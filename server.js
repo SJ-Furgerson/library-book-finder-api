@@ -538,6 +538,37 @@ app.post('/api/search', async (req, res) => {
     }
 });
 
+// Add JSONP support - add this route
+app.get('/api/search-jsonp', async (req, res) => {
+    try {
+        const { books, location, callback } = req.query;
+        
+        if (!books || !location || !callback) {
+            return res.status(400).send(`${callback}({"error": "Missing parameters"});`);
+        }
+        
+        const booksArray = JSON.parse(books);
+        const results = await libraryService.searchBooks(booksArray, location);
+        
+        const response = {
+            success: true,
+            location,
+            results,
+            timestamp: new Date().toISOString()
+        };
+        
+        res.set('Content-Type', 'application/javascript');
+        res.send(`${callback}(${JSON.stringify(response)});`);
+        
+    } catch (error) {
+        const errorResponse = {
+            success: false,
+            error: error.message
+        };
+        res.send(`${req.query.callback}(${JSON.stringify(errorResponse)});`);
+    }
+});
+
 app.get('/api/libraries/:location', async (req, res) => {
     try {
         const { location } = req.params;
