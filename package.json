@@ -1,0 +1,27 @@
+{
+  "name": "library-api-mvp",
+  "version": "1.0.0",
+  "description": "Library book search API with real-time availability",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.7.0",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "keywords": [
+    "library",
+    "books",
+    "api",
+    "search"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
