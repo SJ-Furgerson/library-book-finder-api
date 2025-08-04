@@ -371,6 +371,8 @@
     </div>
 
     <script>
+        console.log('🚀 App starting...');
+        
         const questions = [
             {
                 question: "What kind of mood are you in for reading?",
@@ -533,10 +535,12 @@
         let userLocation = '';
 
         function initializeQuiz() {
+            console.log('📚 Initializing quiz...');
             showQuestion(0);
         }
 
         function showQuestion(index) {
+            console.log(`📝 Showing question ${index + 1}`);
             const container = document.getElementById('question-container');
             const question = questions[index];
             
@@ -620,11 +624,12 @@
             }, 600);
         }
 
-        function showResults() {
+        async function showResults() {
+            console.log('🔍 Showing results...');
             document.querySelector('.progress').style.display = 'none';
             document.getElementById('question-container').style.display = 'none';
             document.getElementById('results-container').style.display = 'block';
-            document.getElementById('location-display').textContent = `Found books near ${userLocation}`;
+            document.getElementById('location-display').textContent = `Searching libraries near ${userLocation}`;
             
             // Show loading state
             document.getElementById('loading').style.display = 'block';
@@ -632,9 +637,9 @@
             try {
                 // Get personalized recommendations
                 const recommendations = getPersonalizedRecommendations();
+                console.log('📖 Got recommendations:', recommendations.length);
                 
-                // For now, show realistic simulated results since Claude's CSP blocks external APIs
-                console.log('📚 Using simulated library data due to Claude CSP restrictions');
+                // Search real libraries using your Railway API
                 await searchRealLibraries(recommendations);
                 
             } catch (error) {
@@ -645,62 +650,6 @@
             }
             
             document.getElementById('loading').style.display = 'none';
-        }
-
-        // Simulated library results (realistic for demo)
-        function displaySimulatedLibraryResults(recommendations) {
-            const grid = document.getElementById('results-grid');
-            
-            grid.innerHTML = recommendations.map(book => {
-                // Simulate realistic library availability
-                const hasLibrary = Math.random() > 0.2; // 80% chance of finding in library
-                const libraryNames = [
-                    `${userLocation} Public Library`,
-                    `${userLocation} Central Library`,
-                    `${userLocation} Library District`,
-                    `${userLocation} Branch Library`
-                ];
-                const libraryName = libraryNames[Math.floor(Math.random() * libraryNames.length)];
-                const isAvailable = Math.random() > 0.3; // 70% availability rate
-                
-                return `
-                    <div class="book-card">
-                        <div class="book-cover">
-                            <img src="${book.cover}" alt="${book.title}" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='Cover not available'">
-                        </div>
-                        <div class="book-title">${book.title}</div>
-                        <div class="book-author">by ${book.author}</div>
-                        <div class="book-details">
-                            <div><strong>Genre:</strong> ${book.genre}</div>
-                            <div><strong>Published:</strong> ${book.published}</div>
-                            <div><strong>Pages:</strong> ${book.pages || 'Unknown'}</div>
-                            <div><strong>Age Group:</strong> ${book.ageGroup}</div>
-                        </div>
-                        
-                        ${hasLibrary ? `
-                            <div class="availability ${isAvailable ? 'available' : ''}">
-                                <div class="availability-status">
-                                    ${isAvailable ? '✅ Available' : '📚 Currently Checked Out'}
-                                </div>
-                                <div class="library-info">${libraryName}</div>
-                                <div class="library-info">${isAvailable ? 'Ready for pickup' : 'Join waitlist'}</div>
-                                <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
-                                    ${isAvailable ? 'Reserve Now' : 'Join Waitlist'}
-                                </a>
-                            </div>
-                        ` : `
-                            <div class="availability">
-                                <div class="availability-status">📚 Search Your Library</div>
-                                <div class="library-info">Check your local library's catalog</div>
-                                <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
-                                    Search WorldCat
-                                </a>
-                            </div>
-                        `}
-                    </div>
-                `;
-            }).join('');
         }
 
         // Search real libraries using Railway API
@@ -738,7 +687,57 @@
             }
         }
 
+        // Display results from real library API
+        function displayRealLibraryResults(apiResults) {
+            console.log('📊 Displaying real library results');
+            const grid = document.getElementById('results-grid');
+            
+            grid.innerHTML = apiResults.map(book => {
+                const hasAvailability = book.availability && book.availability.length > 0;
+                
+                return `
+                    <div class="book-card">
+                        <div class="book-cover">
+                            <img src="${book.cover}" alt="${book.title}" 
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='Cover not available'">
+                        </div>
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">by ${book.author}</div>
+                        <div class="book-details">
+                            <div><strong>Genre:</strong> ${book.genre}</div>
+                            <div><strong>Published:</strong> ${book.published}</div>
+                            <div><strong>Pages:</strong> ${book.pages || 'Unknown'}</div>
+                            <div><strong>Age Group:</strong> ${book.ageGroup}</div>
+                        </div>
+                        
+                        ${hasAvailability ? 
+                            book.availability.map(avail => `
+                                <div class="availability available">
+                                    <div class="availability-status">✅ ${avail.status}</div>
+                                    <div class="library-info">${avail.library}</div>
+                                    ${avail.callNumber && avail.callNumber !== 'Unknown' ? 
+                                        `<div class="library-info"><strong>Call #:</strong> ${avail.callNumber}</div>` : ''
+                                    }
+                                    <a href="${avail.url}" target="_blank" class="library-link">
+                                        Check Availability
+                                    </a>
+                                </div>
+                            `).join('') :
+                            `<div class="availability">
+                                <div class="availability-status">📚 Search Your Library</div>
+                                <div class="library-info">Try your local library's website</div>
+                                <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
+                                    Search WorldCat
+                                </a>
+                            </div>`
+                        }
+                    </div>
+                `;
+            }).join('');
+        }
+
         function getPersonalizedRecommendations() {
+            console.log('🎯 Getting personalized recommendations');
             // Smart recommendation logic based on answers
             const preferences = parseAnswers();
             let scored = books.map(book => {
@@ -792,6 +791,7 @@
 
         // Fallback function for when real API fails
         function displayFallbackResults(recommendations) {
+            console.log('📚 Displaying fallback results');
             const grid = document.getElementById('results-grid');
             grid.innerHTML = recommendations.map(book => {
                 return `
@@ -810,7 +810,7 @@
                         </div>
                         <div class="availability">
                             <div class="availability-status">📚 Search Your Library</div>
-                            <div class="library-info">Try your local library's catalog</div>
+                            <div class="library-info">API temporarily unavailable</div>
                             <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
                                 Search WorldCat
                             </a>
@@ -831,6 +831,7 @@
         }
 
         // Start the quiz when page loads
+        console.log('🌟 Starting app initialization...');
         initializeQuiz();
     </script>
 </body>
