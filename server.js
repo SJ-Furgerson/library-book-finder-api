@@ -10,18 +10,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-    origin: [
-        'http://localhost:3000',
-        'https://claude.ai',
-        'https://artifacts.anthropic.com',
-        /\.claude\.ai$/,
-        /\.anthropic\.com$/
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
-}));
+// Replace the entire CORS section with this:
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
+
+// Remove or comment out the app.use(cors()) line
 app.use(express.json());
 app.use(express.static('public')); // Serve frontend files
 
