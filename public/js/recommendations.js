@@ -1,4 +1,4 @@
-// Book recommendation engine
+// Book recommendation engine - Netlify Compatible Version
 class RecommendationEngine {
     constructor() {
         // Initialize with empty state
@@ -175,76 +175,84 @@ class RecommendationEngine {
                 `https://openlibrary.org/isbn/${book.isbn}` :
                 `https://openlibrary.org/search?q=${cleanTitle}+${cleanAuthor}`,
             worldcat: `https://www.worldcat.org/search?q=${cleanTitle}+${cleanAuthor}`,
-            goodreads: `https://www.goodreads.com/search?q=${cleanTitle}+${cleanAuthor}`
+            goodreads: `https://www.goodreads.com/search?q=${cleanTitle}+${cleanAuthor}`,
+            // Add local library search patterns
+            librarySearch: this.generateLibrarySearchUrl(book, this.userLocation)
         };
     }
 
-    // Search for books using the library API
-    async searchLibraryAPI(recommendations) {
-        const API_URL = 'http://localhost:3000/api/search'; // Update with your server URL
+    // Generate library search URL based on common patterns
+    generateLibrarySearchUrl(book, location) {
+        const cleanLocation = location.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const searchQuery = encodeURIComponent(`${book.title} ${book.author}`);
         
-        try {
-            const response = await fetch(API_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    books: recommendations.map(book => ({
-                        title: book.title,
-                        author: book.author,
-                        isbn: book.isbn
-                    })),
-                    location: this.userLocation
-                })
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                return data.results;
-            } else {
-                console.error('API request failed:', response.status);
-                return null;
-            }
-        } catch (error) {
-            console.error('API request error:', error);
-            return null;
-        }
+        // Try common library catalog patterns
+        const patterns = [
+            `https://${cleanLocation}.bibliocommons.com/search?q=${searchQuery}`,
+            `https://catalog.${cleanLocation}library.org/search?q=${searchQuery}`,
+            `https://${cleanLocation}library.org/search?q=${searchQuery}`,
+            `https://www.${cleanLocation}library.org/search?q=${searchQuery}`
+        ];
+        
+        // Return the most likely pattern
+        return patterns[0];
     }
 
-    // Search using JSONP (fallback for CORS issues)
-    async searchLibraryJSONP(recommendations) {
-        return new Promise((resolve, reject) => {
-            const callbackName = 'libraryCallback_' + Date.now();
-            const script = document.createElement('script');
+    // Since we can't use a backend API on Netlify, we'll simulate library availability
+    // This is a placeholder - in a real app you'd need a separate API service
+    async searchLibraryAPI(recommendations) {
+        console.log('🏛️ Simulating library search (no backend API available on Netlify)');
+        
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Add mock availability data to some books
+        return recommendations.map(book => {
+            // Randomly assign availability to make it realistic
+            const hasAvailability = Math.random() > 0.4; // 60% chance of being available
             
-            // Set up the callback
-            window[callbackName] = function(data) {
-                document.head.removeChild(script);
-                delete window[callbackName];
-                resolve(data.success ? data.results : null);
+            if (hasAvailability) {
+                const mockAvailability = this.generateMockAvailability(book);
+                return {
+                    ...book,
+                    availability: mockAvailability
+                };
+            }
+            
+            return {
+                ...book,
+                availability: []
             };
-
-            // Create the JSONP request
-            const params = new URLSearchParams({
-                books: JSON.stringify(recommendations.map(book => ({
-                    title: book.title,
-                    author: book.author,
-                    isbn: book.isbn
-                }))),
-                location: this.userLocation,
-                callback: callbackName
-            });
-
-            script.src = `http://localhost:3000/api/search-jsonp?${params}`;
-            script.onerror = () => {
-                document.head.removeChild(script);
-                delete window[callbackName];
-                reject(new Error('JSONP request failed'));
-            };
-
-            document.head.appendChild(script);
         });
+    }
+
+    // Generate mock library availability for demo purposes
+    generateMockAvailability(book) {
+        const mockLibraries = [
+            { name: `${this.userLocation} Public Library`, system: 'bibliocommons' },
+            { name: `${this.userLocation} Central Library`, system: 'koha' },
+            { name: `County Library System`, system: 'evergreen' }
+        ];
+        
+        const availability = [];
+        const numAvailable = Math.floor(Math.random() * 3) + 1; // 1-3 libraries
+        
+        for (let i = 0; i < numAvailable; i++) {
+            const library = mockLibraries[i];
+            const status = Math.random() > 0.3 ? 'Available' : 'Checked Out';
+            const links = this.getLibraryLinks(book);
+            
+            availability.push({
+                library: library.name,
+                system: library.system,
+                available: status === 'Available',
+                status: status,
+                url: links.librarySearch,
+                callNumber: `${Math.floor(Math.random() * 999)}.${Math.floor(Math.random() * 99)} ${book.author.charAt(0).toUpperCase()}`
+            });
+        }
+        
+        return availability;
     }
 }
 
