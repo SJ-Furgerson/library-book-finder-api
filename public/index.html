@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacks - Find Books at Your Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="progress">
+        <span id="current-question">1</span> / 7
+    </div>
+
+    <div class="header-container">
+        <h1 class="header">Stacks</h1>
+        <div class="header-lottie" id="header-lottie"></div>
+    </div>
+    <p class="subtitle">Crack Your Next Book</p>
+
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="question-container" id="question-container">
+        <!-- Questions will be dynamically inserted here -->
+    </div>
+
+    <div class="results-container" id="results-container">
+        <div class="results-header">
+            <h2>Your Book Matches</h2>
+            <div class="location-info" id="location-display"></div>
+        </div>
+        
+        <div class="api-status" id="api-status" style="display: none;">
+            <!-- API status messages will appear here -->
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <div>Finding your matches...</div>
+        </div>
+        
+        <div class="results-grid" id="results-grid">
+            <!-- Results will be dynamically inserted here -->
+        </div>
+        <button class="restart-btn" onclick="restartQuiz()">Discover more books</button>
+    </div>
+
+    <!-- JavaScript files -->
+    <script src="js/data.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
