@@ -187,6 +187,28 @@
             opacity: 0.7;
         }
 
+        .api-status {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .api-status.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .api-status.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -289,10 +311,21 @@
             font-size: 0.9rem;
             font-weight: 500;
             transition: background 0.3s ease;
+            margin: 0.2rem 0.2rem 0 0;
         }
 
         .library-link:hover {
             background: #333;
+        }
+
+        .library-link.secondary {
+            background: #6c757d;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+        }
+
+        .library-link.secondary:hover {
+            background: #545b62;
         }
 
         .restart-btn {
@@ -343,7 +376,7 @@
 </head>
 <body>
     <div class="progress">
-        <span id="current-question">1</span> / 6
+        <span id="current-question">1</span> / 7
     </div>
 
     <h1 class="header">Let's crack a book</h1>
@@ -359,6 +392,10 @@
             <div class="location-info" id="location-display"></div>
         </div>
         
+        <div class="api-status" id="api-status" style="display: none;">
+            <!-- API status messages will appear here -->
+        </div>
+        
         <div class="loading" id="loading">
             <div class="loading-spinner"></div>
             <div>Searching local libraries for your perfect matches...</div>
@@ -371,162 +408,111 @@
     </div>
 
     <script>
-        console.log('🚀 App starting...');
+        console.log('🚀 Starting Library Book Finder...');
         
+        // Simple questions array
         const questions = [
             {
-                question: "What kind of mood are you in for reading?",
-                options: ["Adventure & excitement", "Cozy & comforting", "Mind-bending & thought-provoking", "Heartwarming & emotional"],
-                type: "choice"
+                question: "What's your reading vibe right now?",
+                options: ["Heart-pounding excitement", "Cozy and comforting", "Make me think deeply", "Warm and emotional"]
             },
             {
-                question: "How much time do you want to spend reading?",
-                options: ["Quick afternoon read (< 200 pages)", "Weekend companion (200-400 pages)", "Week-long journey (400+ pages)", "Epic adventure (500+ pages)"],
-                type: "choice"
+                question: "How much reading time do you have?",
+                options: ["A quick escape (under 250 pages)", "Perfect weekend read (250-400 pages)", "I'm committed (400-600 pages)", "Bring on the epic (600+ pages)"]
             },
             {
-                question: "What's your preferred genre vibe?",
-                options: ["Fiction that feels real", "Fantasy & sci-fi worlds", "True stories & biographies", "Learning something new"],
-                type: "choice"
+                question: "What genre family calls to you?",
+                options: ["Stories that feel real", "Fantasy & sci-fi adventures", "True stories & real people", "Help me learn & grow"]
             },
             {
-                question: "Who are you reading for?",
-                options: ["Just me (adult)", "Young adult/teen", "Middle grade kid", "Family reading together"],
-                type: "choice"
+                question: "Who's this book for?",
+                options: ["Me (adult content welcome)", "Young adult (16-25 vibe)", "Younger reader (10-15)", "Family-friendly for everyone"]
             },
             {
-                question: "What draws you to a book?",
-                options: ["Amazing characters", "Gripping plot twists", "Beautiful writing style", "Learning new perspectives"],
-                type: "choice"
+                question: "What's your book discovery style?",
+                options: ["Give me the crowd favorites", "I want hidden gems", "Mix of popular and unique", "I trust your judgment"]
+            },
+            {
+                question: "When it comes to publication date?",
+                options: ["Fresh off the press (2020+)", "Modern classics (2000-2020)", "Timeless favorites (1990s-2000s)", "Age doesn't matter to me"]
             },
             {
                 question: "Where are you located?",
-                placeholder: "Enter your city, state or ZIP code",
-                type: "location"
+                isLocation: true
             }
         ];
 
-        // Curated book database with better variety
+        // Book database with Google Books covers prioritized
         const books = [
             {
                 title: "The Seven Husbands of Evelyn Hugo",
                 author: "Taylor Jenkins Reid",
+                isbn: "9781501161933",
                 genre: "Contemporary Fiction",
                 published: "2017",
                 ageGroup: "Adult",
                 pages: 400,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1618414414i/32620332.jpg",
-                mood: ["heartwarming", "thought-provoking"],
-                length: "weekend",
-                genreVibe: "fiction"
+                covers: [
+                    "https://books.google.com/books/content?id=WI5PDQAAQBAJ&printsec=frontcover&img=1&zoom=1",
+                    "https://covers.openlibrary.org/b/isbn/9781501161933-L.jpg"
+                ],
+                rating: 4.4
             },
             {
                 title: "Where the Crawdads Sing",
                 author: "Delia Owens",
+                isbn: "9780735219090",
                 genre: "Literary Fiction",
                 published: "2018",
                 ageGroup: "Adult",
                 pages: 384,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582135294i/36809135.jpg",
-                mood: ["cozy", "heartwarming"],
-                length: "weekend",
-                genreVibe: "fiction"
+                covers: [
+                    "https://books.google.com/books/content?id=mSc5DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+                    "https://covers.openlibrary.org/b/isbn/9780735219090-L.jpg"
+                ],
+                rating: 4.1
             },
             {
                 title: "The House in the Cerulean Sea",
                 author: "TJ Klune",
+                isbn: "9781250217318",
                 genre: "Fantasy",
                 published: "2020",
                 ageGroup: "Adult",
                 pages: 394,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1565908205i/45047384.jpg",
-                mood: ["cozy", "heartwarming"],
-                length: "weekend",
-                genreVibe: "fantasy"
+                covers: [
+                    "https://books.google.com/books/content?id=Y8u8DwAAQBAJ&printsec=frontcover&img=1&zoom=1",
+                    "https://covers.openlibrary.org/b/isbn/9781250217318-L.jpg"
+                ],
+                rating: 4.3
             },
             {
                 title: "Educated",
                 author: "Tara Westover",
+                isbn: "9780399590504",
                 genre: "Memoir",
                 published: "2018",
                 ageGroup: "Adult",
                 pages: 334,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
-                mood: ["thought-provoking"],
-                length: "weekend",
-                genreVibe: "biography"
-            },
-            {
-                title: "The Midnight Library",
-                author: "Matt Haig",
-                genre: "Literary Fiction",
-                published: "2020",
-                ageGroup: "Adult",
-                pages: 288,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1602190253i/52578297.jpg",
-                mood: ["thought-provoking", "heartwarming"],
-                length: "weekend",
-                genreVibe: "fiction"
-            },
-            {
-                title: "Hatchet",
-                author: "Gary Paulsen",
-                genre: "Adventure",
-                published: "1987",
-                ageGroup: "Middle Grade",
-                pages: 195,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1339607969i/50.jpg",
-                mood: ["adventure"],
-                length: "quick",
-                genreVibe: "fiction"
-            },
-            {
-                title: "The Hate U Give",
-                author: "Angie Thomas",
-                genre: "Contemporary Fiction",
-                published: "2017",
-                ageGroup: "Young Adult",
-                pages: 464,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1481952589i/32075671.jpg",
-                mood: ["thought-provoking"],
-                length: "journey",
-                genreVibe: "fiction"
+                covers: [
+                    "https://books.google.com/books/content?id=2ObWDgAAQBAJ&printsec=frontcover&img=1&zoom=1",
+                    "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg"
+                ],
+                rating: 4.4
             },
             {
                 title: "Dune",
                 author: "Frank Herbert",
+                isbn: "9780441172719",
                 genre: "Science Fiction",
                 published: "1965",
                 ageGroup: "Adult",
                 pages: 688,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
-                mood: ["adventure", "thought-provoking"],
-                length: "epic",
-                genreVibe: "fantasy"
-            },
-            {
-                title: "Atomic Habits",
-                author: "James Clear",
-                genre: "Self-Help",
-                published: "2018",
-                ageGroup: "Adult",
-                pages: 320,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1535115320i/40121378.jpg",
-                mood: ["thought-provoking"],
-                length: "weekend",
-                genreVibe: "learning"
-            },
-            {
-                title: "Wonder",
-                author: "R.J. Palacio",
-                genre: "Children's Fiction",
-                published: "2012",
-                ageGroup: "Middle Grade",
-                pages: 315,
-                cover: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1309208640i/11387515.jpg",
-                mood: ["heartwarming"],
-                length: "weekend",
-                genreVibe: "fiction"
+                covers: [
+                    "https://books.google.com/books/content?id=B1hSG45JCX4C&printsec=frontcover&img=1&zoom=1",
+                    "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg"
+                ],
+                rating: 4.2
             }
         ];
 
@@ -534,24 +520,24 @@
         let answers = [];
         let userLocation = '';
 
-        function initializeQuiz() {
+        function startApp() {
             console.log('📚 Initializing quiz...');
             showQuestion(0);
         }
 
         function showQuestion(index) {
-            console.log(`📝 Showing question ${index + 1}`);
+            console.log(`📝 Showing question ${index + 1}: ${questions[index].question}`);
             const container = document.getElementById('question-container');
             const question = questions[index];
             
-            if (question.type === 'location') {
+            if (question.isLocation) {
                 container.innerHTML = `
                     <div class="question active">
                         <h2>${question.question}</h2>
                         <div class="options">
                             <input type="text" class="location-input" id="location-input" 
-                                   placeholder="${question.placeholder}" 
-                                   onkeypress="handleLocationEnter(event)">
+                                   placeholder="Enter your city, state or ZIP code" 
+                                   onkeypress="if(event.key==='Enter') selectLocation()">
                             <button class="continue-btn" id="continue-btn" 
                                     onclick="selectLocation()" disabled>
                                 Continue
@@ -560,13 +546,10 @@
                     </div>
                 `;
                 
-                // Enable button when user types
                 document.getElementById('location-input').addEventListener('input', function(e) {
-                    const btn = document.getElementById('continue-btn');
-                    btn.disabled = e.target.value.trim().length === 0;
+                    document.getElementById('continue-btn').disabled = e.target.value.trim().length === 0;
                 });
                 
-                // Focus the input
                 setTimeout(() => document.getElementById('location-input').focus(), 100);
                 
             } else {
@@ -575,7 +558,7 @@
                         <h2>${question.question}</h2>
                         <div class="options">
                             ${question.options.map((option, i) => 
-                                `<button class="option" onclick="selectAnswer(${i}, '${option}')">${option}</button>`
+                                `<button class="option" onclick="selectAnswer(${i}, '${option.replace(/'/g, "&apos;")}')">${option}</button>`
                             ).join('')}
                         </div>
                     </div>
@@ -585,19 +568,13 @@
             document.getElementById('current-question').textContent = index + 1;
         }
 
-        function handleLocationEnter(event) {
-            if (event.key === 'Enter') {
-                selectLocation();
-            }
-        }
-
         function selectLocation() {
             const input = document.getElementById('location-input');
             const location = input.value.trim();
             
             if (location) {
                 userLocation = location;
-                answers.push({ question: currentQuestion, answer: location, text: location });
+                answers.push({ question: currentQuestion, text: location });
                 
                 const questionEl = document.querySelector('.question.active');
                 questionEl.style.opacity = '0';
@@ -610,6 +587,7 @@
         }
 
         function selectAnswer(optionIndex, optionText) {
+            console.log(`Selected: ${optionText}`);
             answers.push({ question: currentQuestion, answer: optionIndex, text: optionText });
             
             const questionEl = document.querySelector('.question.active');
@@ -631,83 +609,125 @@
             document.getElementById('results-container').style.display = 'block';
             document.getElementById('location-display').textContent = `Searching libraries near ${userLocation}`;
             
-            // Show loading state
             document.getElementById('loading').style.display = 'block';
             
             try {
-                // Get personalized recommendations
-                const recommendations = getPersonalizedRecommendations();
-                console.log('📖 Got recommendations:', recommendations.length);
-                
-                // Search real libraries using your Railway API
-                await searchRealLibraries(recommendations);
+                // Try the real library API first
+                await searchRealLibraries();
                 
             } catch (error) {
                 console.error('Search error:', error);
-                // Fallback to basic results
-                const recommendations = getPersonalizedRecommendations();
-                displayFallbackResults(recommendations);
+                displayFallbackResults('Search failed - showing alternative links');
             }
             
             document.getElementById('loading').style.display = 'none';
         }
 
-        // Search real libraries using Railway API
-        async function searchRealLibraries(books) {
+        async function searchRealLibraries() {
             try {
-                console.log(`🔍 Searching real libraries for ${books.length} books near ${userLocation}`);
+                console.log(`🔍 Attempting real library search near ${userLocation}`);
+                
+                showApiStatus('Connecting to library systems...', 'info');
                 
                 const response = await fetch('https://library-book-finder-api-production.up.railway.app/api/search', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        books: books,
-                        location: userLocation
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ books: books, location: userLocation })
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`API request failed: ${response.status}`);
+                    throw new Error(`Library API returned ${response.status}`);
                 }
                 
                 const data = await response.json();
                 
-                if (data.success) {
-                    console.log(`✅ Found availability data for ${data.results.length} books`);
+                if (data.success && data.results.length > 0) {
+                    console.log(`✅ Library API success: ${data.results.length} books`);
+                    showApiStatus(`Found books in local library systems`, 'success');
                     displayRealLibraryResults(data.results);
                 } else {
-                    throw new Error(data.error || 'API returned unsuccessful response');
+                    throw new Error('No results from library API');
                 }
                 
             } catch (error) {
-                console.error('❌ Real library search failed:', error);
-                displayFallbackResults(books);
+                console.error('❌ Library API failed:', error.message);
+                showApiStatus('Library systems temporarily unavailable - showing alternative search options', 'error');
+                displayFallbackResults('Using alternative book search methods');
             }
         }
 
-        // Display results from real library API
+        function showApiStatus(message, type) {
+            const statusEl = document.getElementById('api-status');
+            statusEl.textContent = message;
+            statusEl.className = `api-status ${type}`;
+            statusEl.style.display = 'block';
+        }
+
+        function getCoverHtml(book) {
+            if (!book.covers || book.covers.length === 0) {
+                return '<div class="book-cover">📚<br>No cover<br>available</div>';
+            }
+            
+            return `
+                <div class="book-cover">
+                    <img src="${book.covers[0]}" 
+                         alt="${book.title}" 
+                         data-fallback="${book.covers[1] || ''}"
+                         onload="this.style.opacity='1'"
+                         onerror="handleCoverError(this)"
+                         style="opacity: 0; transition: opacity 0.3s ease;">
+                </div>
+            `;
+        }
+
+        function handleCoverError(img) {
+            const fallback = img.dataset.fallback;
+            if (fallback && img.src !== fallback) {
+                console.log('Cover failed, trying fallback:', fallback);
+                img.src = fallback;
+            } else {
+                console.log('All cover sources failed, showing placeholder');
+                img.style.display = 'none';
+                img.parentElement.innerHTML = `
+                    <div style="display: flex; align-items: center; justify-content: center; 
+                                height: 100%; background: #f0f0f0; color: #666; font-size: 0.8rem;
+                                border-radius: 4px;">
+                        📚<br>Cover not<br>available
+                    </div>
+                `;
+            }
+        }
+
+        function getLibraryLinks(book) {
+            const cleanTitle = encodeURIComponent(book.title.replace(/[^\w\s]/g, ''));
+            const cleanAuthor = encodeURIComponent(book.author.replace(/[^\w\s]/g, ''));
+            
+            return {
+                googleBooks: `https://books.google.com/books?q=${cleanTitle}+${cleanAuthor}`,
+                openLibrary: book.isbn ? 
+                    `https://openlibrary.org/isbn/${book.isbn}` :
+                    `https://openlibrary.org/search?q=${cleanTitle}+${cleanAuthor}`
+            };
+        }
+
         function displayRealLibraryResults(apiResults) {
             console.log('📊 Displaying real library results');
             const grid = document.getElementById('results-grid');
             
             grid.innerHTML = apiResults.map(book => {
                 const hasAvailability = book.availability && book.availability.length > 0;
+                const links = getLibraryLinks(book);
                 
                 return `
                     <div class="book-card">
-                        <div class="book-cover">
-                            <img src="${book.cover}" alt="${book.title}" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='Cover not available'">
-                        </div>
+                        ${getCoverHtml(book)}
                         <div class="book-title">${book.title}</div>
                         <div class="book-author">by ${book.author}</div>
                         <div class="book-details">
                             <div><strong>Genre:</strong> ${book.genre}</div>
                             <div><strong>Published:</strong> ${book.published}</div>
-                            <div><strong>Pages:</strong> ${book.pages || 'Unknown'}</div>
-                            <div><strong>Age Group:</strong> ${book.ageGroup}</div>
+                            <div><strong>Pages:</strong> ${book.pages}</div>
+                            <div><strong>Rating:</strong> ${book.rating}/5 ⭐</div>
                         </div>
                         
                         ${hasAvailability ? 
@@ -715,20 +735,16 @@
                                 <div class="availability available">
                                     <div class="availability-status">✅ ${avail.status}</div>
                                     <div class="library-info">${avail.library}</div>
-                                    ${avail.callNumber && avail.callNumber !== 'Unknown' ? 
-                                        `<div class="library-info"><strong>Call #:</strong> ${avail.callNumber}</div>` : ''
-                                    }
-                                    <a href="${avail.url}" target="_blank" class="library-link">
-                                        Check Availability
-                                    </a>
+                                    <a href="${avail.url}" target="_blank" class="library-link">Check Library</a>
+                                    <a href="${links.googleBooks}" target="_blank" class="library-link secondary">Google Books</a>
+                                    <a href="${links.openLibrary}" target="_blank" class="library-link secondary">Open Library</a>
                                 </div>
                             `).join('') :
                             `<div class="availability">
-                                <div class="availability-status">📚 Search Your Library</div>
-                                <div class="library-info">Try your local library's website</div>
-                                <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
-                                    Search WorldCat
-                                </a>
+                                <div class="availability-status">📚 Find This Book</div>
+                                <div class="library-info">Multiple search options available</div>
+                                <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a><br>
+                                <a href="${links.openLibrary}" target="_blank" class="library-link secondary">Open Library</a>
                             </div>`
                         }
                     </div>
@@ -736,84 +752,29 @@
             }).join('');
         }
 
-        function getPersonalizedRecommendations() {
-            console.log('🎯 Getting personalized recommendations');
-            // Smart recommendation logic based on answers
-            const preferences = parseAnswers();
-            let scored = books.map(book => {
-                let score = 0;
-                
-                // Match mood
-                if (book.mood && book.mood.some(mood => 
-                    preferences.mood.toLowerCase().includes(mood))) {
-                    score += 3;
-                }
-                
-                // Match length preference
-                if (book.length === preferences.length) score += 2;
-                
-                // Match genre vibe
-                if (book.genreVibe === preferences.genreVibe) score += 3;
-                
-                // Match age group
-                if (book.ageGroup.toLowerCase().includes(preferences.ageGroup.toLowerCase()) ||
-                    preferences.ageGroup.toLowerCase().includes('family')) {
-                    score += 2;
-                }
-                
-                return { ...book, score };
-            });
-            
-            // Sort by score and return top 5
-            return scored.sort((a, b) => b.score - a.score).slice(0, 5);
-        }
-
-        function parseAnswers() {
-            const prefs = {};
-            
-            // Map answers to preferences
-            prefs.mood = answers[0]?.text.toLowerCase().split(' ')[0] || 'cozy';
-            
-            if (answers[1]?.text.includes('Quick')) prefs.length = 'quick';
-            else if (answers[1]?.text.includes('Weekend')) prefs.length = 'weekend';
-            else if (answers[1]?.text.includes('Week-long')) prefs.length = 'journey';
-            else prefs.length = 'epic';
-            
-            if (answers[2]?.text.includes('Fiction')) prefs.genreVibe = 'fiction';
-            else if (answers[2]?.text.includes('Fantasy')) prefs.genreVibe = 'fantasy';
-            else if (answers[2]?.text.includes('True stories')) prefs.genreVibe = 'biography';
-            else prefs.genreVibe = 'learning';
-            
-            prefs.ageGroup = answers[3]?.text || 'Adult';
-            
-            return prefs;
-        }
-
-        // Fallback function for when real API fails
-        function displayFallbackResults(recommendations) {
-            console.log('📚 Displaying fallback results');
+        function displayFallbackResults(reason) {
+            console.log('📚 Displaying fallback results:', reason);
             const grid = document.getElementById('results-grid');
-            grid.innerHTML = recommendations.map(book => {
+            
+            grid.innerHTML = books.slice(0, 5).map(book => {
+                const links = getLibraryLinks(book);
+                
                 return `
                     <div class="book-card">
-                        <div class="book-cover">
-                            <img src="${book.cover}" alt="${book.title}" 
-                                 onerror="this.style.display='none'; this.parentElement.innerHTML='Cover not available'">
-                        </div>
+                        ${getCoverHtml(book)}
                         <div class="book-title">${book.title}</div>
                         <div class="book-author">by ${book.author}</div>
                         <div class="book-details">
                             <div><strong>Genre:</strong> ${book.genre}</div>
                             <div><strong>Published:</strong> ${book.published}</div>
-                            <div><strong>Pages:</strong> ${book.pages || 'Unknown'}</div>
-                            <div><strong>Age Group:</strong> ${book.ageGroup}</div>
+                            <div><strong>Pages:</strong> ${book.pages}</div>
+                            <div><strong>Rating:</strong> ${book.rating}/5 ⭐</div>
                         </div>
                         <div class="availability">
-                            <div class="availability-status">📚 Search Your Library</div>
-                            <div class="library-info">API temporarily unavailable</div>
-                            <a href="https://search.worldcat.org/title/${encodeURIComponent(book.title)}" target="_blank" class="library-link">
-                                Search WorldCat
-                            </a>
+                            <div class="availability-status">📚 Find This Book</div>
+                            <div class="library-info">Multiple search options available</div>
+                            <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a><br>
+                            <a href="${links.openLibrary}" target="_blank" class="library-link secondary">Open Library</a>
                         </div>
                     </div>
                 `;
@@ -827,12 +788,13 @@
             document.querySelector('.progress').style.display = 'block';
             document.getElementById('question-container').style.display = 'flex';
             document.getElementById('results-container').style.display = 'none';
-            initializeQuiz();
+            document.getElementById('api-status').style.display = 'none';
+            startApp();
         }
 
-        // Start the quiz when page loads
+        // Start the app when page loads
         console.log('🌟 Starting app initialization...');
-        initializeQuiz();
+        startApp();
     </script>
 </body>
 </html>
