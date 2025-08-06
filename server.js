@@ -5,12 +5,18 @@ const express = require('express');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+// Replace the entire CORS section with this:
+// Remove or comment out any existing CORS lines like:
+// app.use(cors());
+// app.use(cors({...}));
+
+// Add this instead - right after the other middleware:
+// CORS configuration
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -24,8 +30,9 @@ app.use((req, res, next) => {
     next();
 });
 
+// Remove or comment out the app.use(cors()) line
 app.use(express.json());
-app.use(express.static('public')); // Serve static files from public directory
+app.use(express.static('public')); // Serve frontend files
 
 // In-memory cache (use Redis in production)
 const cache = new Map();
@@ -531,7 +538,7 @@ app.post('/api/search', async (req, res) => {
     }
 });
 
-// JSONP support for CORS issues
+// Add JSONP support - add this route
 app.get('/api/search-jsonp', async (req, res) => {
     try {
         const { books, location, callback } = req.query;
@@ -591,17 +598,104 @@ app.get('/api/health', (req, res) => {
     });
 });
 
-// Serve the main application
+// Basic frontend for testing
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.send(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Library API MVP</title>
+            <style>
+                body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+                .test-area { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+                button { background: #007cba; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+                button:hover { background: #005a87; }
+                .results { background: white; border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 4px; }
+                .loading { color: #666; font-style: italic; }
+            </style>
+        </head>
+        <body>
+            <h1>📚 Library API MVP</h1>
+            <p>Test the library search API with real book searches.</p>
+            
+            <div class="test-area">
+                <h3>Test Book Search</h3>
+                <input type="text" id="location" placeholder="Enter city, state or ZIP" style="width: 200px; padding: 8px;">
+                <button onclick="testSearch()">Search Libraries</button>
+                <div id="results"></div>
+            </div>
+            
+            <div class="test-area">
+                <h3>API Endpoints</h3>
+                <ul>
+                    <li><strong>POST /api/search</strong> - Search for books at libraries</li>
+                    <li><strong>GET /api/libraries/:location</strong> - Find libraries in area</li>
+                    <li><strong>GET /api/health</strong> - Service health check</li>
+                </ul>
+            </div>
+
+            <script>
+                async function testSearch() {
+                    const location = document.getElementById('location').value;
+                    const resultsDiv = document.getElementById('results');
+                    
+                    if (!location) {
+                        alert('Please enter a location');
+                        return;
+                    }
+                    
+                    resultsDiv.innerHTML = '<div class="loading">Searching libraries...</div>';
+                    
+                    try {
+                        const testBooks = [
+                            { title: "The Seven Husbands of Evelyn Hugo", author: "Taylor Jenkins Reid" },
+                            { title: "Where the Crawdads Sing", author: "Delia Owens" }
+                        ];
+                        
+                        const response = await fetch('/api/search', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ books: testBooks, location })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        let html = '<h4>Search Results:</h4>';
+                        if (data.success) {
+                            data.results.forEach(book => {
+                                html += '<div class="results">';
+                                html += '<strong>' + book.title + '</strong> by ' + book.author + '<br>';
+                                if (book.availability.length > 0) {
+                                    book.availability.forEach(avail => {
+                                        html += '✅ ' + avail.library + ' (' + avail.status + ')<br>';
+                                        html += '<a href="' + avail.url + '" target="_blank">Check catalog</a><br>';
+                                    });
+                                } else {
+                                    html += '❌ Not found in local libraries<br>';
+                                }
+                                html += '</div>';
+                            });
+                        } else {
+                            html += '<div class="results">Error: ' + data.error + '</div>';
+                        }
+                        
+                        resultsDiv.innerHTML = html;
+                        
+                    } catch (error) {
+                        resultsDiv.innerHTML = '<div class="results">Error: ' + error.message + '</div>';
+                    }
+                }
+            </script>
+        </body>
+        </html>
+    `);
 });
 
 // Start server
 app.listen(PORT, () => {
     console.log(`🚀 Library API MVP running on port ${PORT}`);
-    console.log(`📖 Main app: http://localhost:${PORT}`);
+    console.log(`📖 Test it at: http://localhost:${PORT}`);
     console.log(`🔍 API endpoint: http://localhost:${PORT}/api/search`);
-    console.log(`📁 Serve your frontend files from the 'public' directory`);
 });
 
 module.exports = app;
