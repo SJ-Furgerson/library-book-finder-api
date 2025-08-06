@@ -184,7 +184,7 @@ class UIManager {
         
         // Show results UI
         document.getElementById('results-container').style.display = 'block';
-        document.getElementById('location-display').textContent = `Searching libraries near ${this.userLocation}`;
+        document.getElementById('location-display').textContent = `Book recommendations for ${this.userLocation}`;
         document.getElementById('loading').style.display = 'block';
         
         // Set up recommendation engine
@@ -194,30 +194,18 @@ class UIManager {
         // Generate recommendations
         const recommendations = recommendationEngine.generateRecommendations();
         
-        // Try to get library availability
-        try {
-            const libraryResults = await recommendationEngine.searchLibraryAPI(recommendations);
-            if (libraryResults) {
-                this.displayResults(libraryResults, true);
-            } else {
-                // Fallback to showing recommendations without library data
-                this.displayResults(recommendations, false);
-            }
-        } catch (error) {
-            console.error('Library search failed:', error);
+        // Simulate brief loading for better UX
+        setTimeout(() => {
             this.displayResults(recommendations, false);
-        }
-        
-        document.getElementById('loading').style.display = 'none';
+            document.getElementById('loading').style.display = 'none';
+        }, 1000);
     }
 
     // Display book results
     displayResults(results, hasLibraryData) {
         console.log('📊 Displaying book recommendations');
         
-        const statusMessage = hasLibraryData 
-            ? `Found ${results.length} personalized book recommendations with library availability!`
-            : `Found ${results.length} personalized book recommendations for you!`;
+        const statusMessage = `Found ${results.length} personalized book recommendations for you!`;
         
         this.showApiStatus(statusMessage, 'success');
         
@@ -225,7 +213,6 @@ class UIManager {
         
         grid.innerHTML = results.map(book => {
             const links = recommendationEngine.getLibraryLinks(book);
-            const availabilityHtml = this.generateAvailabilityHtml(book, hasLibraryData);
             
             return `
                 <div class="book-card">
@@ -238,26 +225,17 @@ class UIManager {
                         <div><strong>Pages:</strong> ${book.pages}</div>
                         <div><strong>Rating:</strong> ${book.rating}/5 ⭐</div>
                     </div>
-                    ${availabilityHtml}
+                    <div class="availability">
+                        <div class="availability-status">📚 Find This Book</div>
+                        <div class="library-info">Available from these sources:</div>
+                        <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a>
+                        <a href="${links.openLibrary}" target="_blank" class="library-link">Open Library</a>
+                        <a href="${links.goodreads}" target="_blank" class="library-link">Goodreads</a>
+                        <a href="${links.amazon}" target="_blank" class="library-link">Amazon</a>
+                    </div>
                 </div>
             `;
         }).join('');
-    }
-
-    // Generate availability HTML with working book links
-    generateAvailabilityHtml(book, hasLibraryData) {
-        const links = recommendationEngine.getLibraryLinks(book);
-        
-        return `
-            <div class="availability">
-                <div class="availability-status">📚 Find This Book</div>
-                <div class="library-info">Available from these sources:</div>
-                <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a>
-                <a href="${links.openLibrary}" target="_blank" class="library-link">Open Library</a>
-                <a href="${links.goodreads}" target="_blank" class="library-link">Goodreads</a>
-                <a href="${links.amazon}" target="_blank" class="library-link">Amazon</a>
-            </div>
-        `;
     }
 
     // Get book cover HTML
