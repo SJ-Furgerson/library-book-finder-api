@@ -244,35 +244,20 @@ class UIManager {
         }).join('');
     }
 
-    // Generate availability HTML based on whether we have library data
+    // Generate availability HTML with working book links
     generateAvailabilityHtml(book, hasLibraryData) {
         const links = recommendationEngine.getLibraryLinks(book);
         
-        if (hasLibraryData && book.availability && book.availability.length > 0) {
-            // Show actual library availability
-            const availabilityList = book.availability.map(avail => 
-                `<div class="library-info">📍 ${avail.library} - ${avail.status}</div>
-                 <a href="${avail.url}" target="_blank" class="library-link">Check Catalog</a>`
-            ).join('');
-            
-            return `
-                <div class="availability available">
-                    <div class="availability-status">✅ Available at Local Libraries</div>
-                    ${availabilityList}
-                </div>
-            `;
-        } else {
-            // Show search links
-            return `
-                <div class="availability">
-                    <div class="availability-status">📚 Find This Book</div>
-                    <div class="library-info">Search multiple sources near ${this.userLocation}</div>
-                    <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a>
-                    <a href="${links.openLibrary}" target="_blank" class="library-link">Open Library</a>
-                    <a href="${links.goodreads}" target="_blank" class="library-link">Goodreads</a>
-                </div>
-            `;
-        }
+        return `
+            <div class="availability">
+                <div class="availability-status">📚 Find This Book</div>
+                <div class="library-info">Available from these sources:</div>
+                <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a>
+                <a href="${links.openLibrary}" target="_blank" class="library-link">Open Library</a>
+                <a href="${links.goodreads}" target="_blank" class="library-link">Goodreads</a>
+                <a href="${links.amazon}" target="_blank" class="library-link">Amazon</a>
+            </div>
+        `;
     }
 
     // Get book cover HTML

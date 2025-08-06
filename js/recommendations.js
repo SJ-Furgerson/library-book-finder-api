@@ -174,10 +174,8 @@ class RecommendationEngine {
             openLibrary: book.isbn ? 
                 `https://openlibrary.org/isbn/${book.isbn}` :
                 `https://openlibrary.org/search?q=${cleanTitle}+${cleanAuthor}`,
-            worldcat: `https://www.worldcat.org/search?q=${cleanTitle}+${cleanAuthor}`,
             goodreads: `https://www.goodreads.com/search?q=${cleanTitle}+${cleanAuthor}`,
-            // Add local library search patterns
-            librarySearch: this.generateLibrarySearchUrl(book, this.userLocation)
+            amazon: `https://www.amazon.com/s?k=${cleanTitle}+${cleanAuthor}&i=stripbooks`
         };
     }
 
@@ -198,32 +196,19 @@ class RecommendationEngine {
         return patterns[0];
     }
 
-    // Since we can't use a backend API on Netlify, we'll simulate library availability
-    // This is a placeholder - in a real app you'd need a separate API service
+    // Since we can't use a backend API on Netlify, we'll show the working book links
+    // This provides immediate value to users with real, working links
     async searchLibraryAPI(recommendations) {
-        console.log('🏛️ Simulating library search (no backend API available on Netlify)');
+        console.log('📚 Showing book links (no library API needed)');
         
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        // Simulate a brief loading delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 800));
         
-        // Add mock availability data to some books
-        return recommendations.map(book => {
-            // Randomly assign availability to make it realistic
-            const hasAvailability = Math.random() > 0.4; // 60% chance of being available
-            
-            if (hasAvailability) {
-                const mockAvailability = this.generateMockAvailability(book);
-                return {
-                    ...book,
-                    availability: mockAvailability
-                };
-            }
-            
-            return {
-                ...book,
-                availability: []
-            };
-        });
+        // Return books with empty availability (we'll show the working links instead)
+        return recommendations.map(book => ({
+            ...book,
+            availability: [] // No library data, just show the working book links
+        }));
     }
 
     // Generate mock library availability for demo purposes
