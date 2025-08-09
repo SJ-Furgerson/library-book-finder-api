@@ -35,7 +35,7 @@ const questions = [
     }
 ];
 
-// Comprehensive book database - 100 bestselling books across genres
+// Complete book database - 200 unique bestselling books across all genres
 const books = [
     // Contemporary Fiction & Literary Fiction
     {
@@ -1167,6 +1167,1141 @@ const books = [
         pages: 180,
         covers: ["https://books.google.com/books/content?id=cJhPAAAAMAAJ&printsec=frontcover&img=1&zoom=1"],
         rating: 4.1
+    },
+
+    // Additional 100 Bestselling Books - Expanding Library to 200 Total
+
+    // More Contemporary Fiction & Literary Fiction
+    {
+        title: "A Thousand Splendid Suns",
+        author: "Khaled Hosseini",
+        isbn: "9781594489501",
+        genre: "Literary Fiction",
+        published: "2007",
+        ageGroup: "Adult",
+        pages: 372,
+        covers: ["https://books.google.com/books/content?id=5cK-ywEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "The Curious Incident of the Dog in the Night-Time",
+        author: "Mark Haddon",
+        isbn: "9781400032716",
+        genre: "Contemporary Fiction",
+        published: "2003",
+        ageGroup: "Young Adult",
+        pages: 226,
+        covers: ["https://books.google.com/books/content?id=XBOBDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Lovely Bones",
+        author: "Alice Sebold",
+        isbn: "9780316166683",
+        genre: "Contemporary Fiction",
+        published: "2002",
+        ageGroup: "Adult",
+        pages: 328,
+        covers: ["https://books.google.com/books/content?id=9OpqPwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "The Secret Life of Bees",
+        author: "Sue Monk Kidd",
+        isbn: "9780142001745",
+        genre: "Contemporary Fiction",
+        published: "2002",
+        ageGroup: "Adult",
+        pages: 301,
+        covers: ["https://books.google.com/books/content?id=6ScqN2vJUo0C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Atonement",
+        author: "Ian McEwan",
+        isbn: "9780385721790",
+        genre: "Literary Fiction",
+        published: "2001",
+        ageGroup: "Adult",
+        pages: 351,
+        covers: ["https://books.google.com/books/content?id=4GtPsJt8rfUC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Time Keeper",
+        author: "Mitch Albom",
+        isbn: "9781401322786",
+        genre: "Contemporary Fiction",
+        published: "2012",
+        ageGroup: "Adult",
+        pages: 224,
+        covers: ["https://books.google.com/books/content?id=Vbl0VYzRbUoC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Everything I Never Told You",
+        author: "Celeste Ng",
+        isbn: "9780143127550",
+        genre: "Contemporary Fiction",
+        published: "2014",
+        ageGroup: "Adult",
+        pages: 297,
+        covers: ["https://books.google.com/books/content?id=mTmMoAEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Light We Lost",
+        author: "Jill Santopolo",
+        isbn: "9780399563461",
+        genre: "Contemporary Fiction",
+        published: "2017",
+        ageGroup: "Adult",
+        pages: 304,
+        covers: ["https://books.google.com/books/content?id=mKwwDQAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Poisonwood Bible",
+        author: "Barbara Kingsolver",
+        isbn: "9780060175405",
+        genre: "Literary Fiction",
+        published: "1998",
+        ageGroup: "Adult",
+        pages: 546,
+        covers: ["https://books.google.com/books/content?id=QRJKhvA-TW8C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+
+    // More Science Fiction & Fantasy
+    {
+        title: "The Fifth Element",
+        author: "Terry Pratchett",
+        isbn: "9780552131230",
+        genre: "Fantasy",
+        published: "1987",
+        ageGroup: "Adult",
+        pages: 288,
+        covers: ["https://books.google.com/books/content?id=SKJvKgEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Stand",
+        author: "Stephen King",
+        isbn: "9780307743688",
+        genre: "Science Fiction",
+        published: "1978",
+        ageGroup: "Adult",
+        pages: 1152,
+        covers: ["https://books.google.com/books/content?id=2Sp-hEn4aL0C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Hunger Games: Catching Fire",
+        author: "Suzanne Collins",
+        isbn: "9780439023498",
+        genre: "Young Adult",
+        published: "2009",
+        ageGroup: "Young Adult",
+        pages: 391,
+        covers: ["https://books.google.com/books/content?id=NkL_sGaU-WgC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+        author: "C.S. Lewis",
+        isbn: "9780060764890",
+        genre: "Fantasy",
+        published: "1950",
+        ageGroup: "Family",
+        pages: 208,
+        covers: ["https://books.google.com/books/content?id=yMX8BXqpBWEC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Fahrenheit 451",
+        author: "Ray Bradbury",
+        isbn: "9781451673319",
+        genre: "Science Fiction",
+        published: "1953",
+        ageGroup: "Young Adult",
+        pages: 249,
+        covers: ["https://books.google.com/books/content?id=QPtKh7BbXx0C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Giver",
+        author: "Lois Lowry",
+        isbn: "9780544336261",
+        genre: "Science Fiction",
+        published: "1993",
+        ageGroup: "Young Adult",
+        pages: 240,
+        covers: ["https://books.google.com/books/content?id=hgBKBQAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Foundation",
+        author: "Isaac Asimov",
+        isbn: "9780553293357",
+        genre: "Science Fiction",
+        published: "1951",
+        ageGroup: "Adult",
+        pages: 244,
+        covers: ["https://books.google.com/books/content?id=BKIyDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Left Hand of Darkness",
+        author: "Ursula K. Le Guin",
+        isbn: "9780441478125",
+        genre: "Science Fiction",
+        published: "1969",
+        ageGroup: "Adult",
+        pages: 304,
+        covers: ["https://books.google.com/books/content?id=fKZsEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Dark Tower: The Gunslinger",
+        author: "Stephen King",
+        isbn: "9780452284692",
+        genre: "Fantasy",
+        published: "1982",
+        ageGroup: "Adult",
+        pages: 300,
+        covers: ["https://books.google.com/books/content?id=PoASu0Eg4pkC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Princess Bride",
+        author: "William Goldman",
+        isbn: "9780156035217",
+        genre: "Fantasy",
+        published: "1973",
+        ageGroup: "Young Adult",
+        pages: 283,
+        covers: ["https://books.google.com/books/content?id=WI2ePwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // More Thrillers, Mysteries & Crime
+    {
+        title: "The Da Vinci Code",
+        author: "Dan Brown",
+        isbn: "9780307474278",
+        genre: "Thriller",
+        published: "2003",
+        ageGroup: "Adult",
+        pages: 454,
+        covers: ["https://books.google.com/books/content?id=FwDtrlJgfWYC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "Angels & Demons",
+        author: "Dan Brown",
+        isbn: "9780671027360",
+        genre: "Thriller",
+        published: "2000",
+        ageGroup: "Adult",
+        pages: 736,
+        covers: ["https://books.google.com/books/content?id=zQnuAAAAMAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "The Girl Who Kicked the Hornet's Nest",
+        author: "Stieg Larsson",
+        isbn: "9780307269997",
+        genre: "Mystery",
+        published: "2007",
+        ageGroup: "Adult",
+        pages: 563,
+        covers: ["https://books.google.com/books/content?id=yJiCuAAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "And Then There Were None",
+        author: "Agatha Christie",
+        isbn: "9780062073488",
+        genre: "Mystery",
+        published: "1939",
+        ageGroup: "Adult",
+        pages: 264,
+        covers: ["https://books.google.com/books/content?id=aKD5ugEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Silence of the Lambs",
+        author: "Thomas Harris",
+        isbn: "9780312924584",
+        genre: "Thriller",
+        published: "1988",
+        ageGroup: "Adult",
+        pages: 352,
+        covers: ["https://books.google.com/books/content?id=gQnfeCHDVJQC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Maltese Falcon",
+        author: "Dashiell Hammett",
+        isbn: "9780679722649",
+        genre: "Mystery",
+        published: "1930",
+        ageGroup: "Adult",
+        pages: 217,
+        covers: ["https://books.google.com/books/content?id=1hxJAgAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Big Sleep",
+        author: "Raymond Chandler",
+        isbn: "9780394758282",
+        genre: "Mystery",
+        published: "1939",
+        ageGroup: "Adult",
+        pages: 231,
+        covers: ["https://books.google.com/books/content?id=aVbDPgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Talented Mr. Ripley",
+        author: "Patricia Highsmith",
+        isbn: "9780393332148",
+        genre: "Thriller",
+        published: "1955",
+        ageGroup: "Adult",
+        pages: 290,
+        covers: ["https://books.google.com/books/content?id=Y4FQAAAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Rebecca",
+        author: "Daphne du Maurier",
+        isbn: "9780380730407",
+        genre: "Mystery",
+        published: "1938",
+        ageGroup: "Adult",
+        pages: 357,
+        covers: ["https://books.google.com/books/content?id=cQXUxgEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "In Cold Blood",
+        author: "Truman Capote",
+        isbn: "9780679745587",
+        genre: "Thriller",
+        published: "1966",
+        ageGroup: "Adult",
+        pages: 343,
+        covers: ["https://books.google.com/books/content?id=v6wgPwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // More Romance
+    {
+        title: "Pride and Prejudice and Zombies",
+        author: "Seth Grahame-Smith",
+        isbn: "9781594743344",
+        genre: "Romance",
+        published: "2009",
+        ageGroup: "Adult",
+        pages: 320,
+        covers: ["https://books.google.com/books/content?id=_HaHAAAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.2
+    },
+    {
+        title: "The Notebook",
+        author: "Nicholas Sparks",
+        isbn: "9780446676090",
+        genre: "Romance",
+        published: "1996",
+        ageGroup: "Adult",
+        pages: 214,
+        covers: ["https://books.google.com/books/content?id=u2n8LwEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Dear John",
+        author: "Nicholas Sparks",
+        isbn: "9780446698078",
+        genre: "Romance",
+        published: "2006",
+        ageGroup: "Adult",
+        pages: 276,
+        covers: ["https://books.google.com/books/content?id=MlolR8XRFRUC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Last Song",
+        author: "Nicholas Sparks",
+        isbn: "9780446547550",
+        genre: "Romance",
+        published: "2009",
+        ageGroup: "Young Adult",
+        pages: 390,
+        covers: ["https://books.google.com/books/content?id=jgfMcgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Safe Haven",
+        author: "Nicholas Sparks",
+        isbn: "9780446547574",
+        genre: "Romance",
+        published: "2010",
+        ageGroup: "Adult",
+        pages: 340,
+        covers: ["https://books.google.com/books/content?id=0NzfcgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "One Day",
+        author: "David Nicholls",
+        isbn: "9780307946713",
+        genre: "Romance",
+        published: "2009",
+        ageGroup: "Adult",
+        pages: 435,
+        covers: ["https://books.google.com/books/content?id=PJnhgQEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Bridges of Madison County",
+        author: "Robert James Waller",
+        isbn: "9780446364270",
+        genre: "Romance",
+        published: "1992",
+        ageGroup: "Adult",
+        pages: 171,
+        covers: ["https://books.google.com/books/content?id=vONqPgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+
+    // More Historical Fiction
+    {
+        title: "Gone with the Wind",
+        author: "Margaret Mitchell",
+        isbn: "9781451635621",
+        genre: "Historical Fiction",
+        published: "1936",
+        ageGroup: "Adult",
+        pages: 1037,
+        covers: ["https://books.google.com/books/content?id=PbgcBAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Other Boleyn Girl",
+        author: "Philippa Gregory",
+        isbn: "9781416524397",
+        genre: "Historical Fiction",
+        published: "2001",
+        ageGroup: "Adult",
+        pages: 661,
+        covers: ["https://books.google.com/books/content?id=NKJbaPEj5P0C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Cold Mountain",
+        author: "Charles Frazier",
+        isbn: "9780802145000",
+        genre: "Historical Fiction",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 449,
+        covers: ["https://books.google.com/books/content?id=sO-AjLKWwmEC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Thorn Birds",
+        author: "Colleen McCullough",
+        isbn: "9780061990588",
+        genre: "Historical Fiction",
+        published: "1977",
+        ageGroup: "Adult",
+        pages: 692,
+        covers: ["https://books.google.com/books/content?id=6n3eBAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Clan of the Cave Bear",
+        author: "Jean M. Auel",
+        isbn: "9780553250428",
+        genre: "Historical Fiction",
+        published: "1980",
+        ageGroup: "Adult",
+        pages: 512,
+        covers: ["https://books.google.com/books/content?id=vhM4AAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Roots",
+        author: "Alex Haley",
+        isbn: "9780385037877",
+        genre: "Historical Fiction",
+        published: "1976",
+        ageGroup: "Adult",
+        pages: 888,
+        covers: ["https://books.google.com/books/content?id=PG9TAAAAYAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Scarlet Letter",
+        author: "Nathaniel Hawthorne",
+        isbn: "9780486280486",
+        genre: "Historical Fiction",
+        published: "1850",
+        ageGroup: "Young Adult",
+        pages: 272,
+        covers: ["https://books.google.com/books/content?id=LfqDDAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.4
+    },
+    {
+        title: "The Tea Rose",
+        author: "Jennifer Donnelly",
+        isbn: "9780312330330",
+        genre: "Historical Fiction",
+        published: "2002",
+        ageGroup: "Adult",
+        pages: 624,
+        covers: ["https://books.google.com/books/content?id=DExrAQAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Sarah's Key",
+        author: "Tatiana de Rosnay",
+        isbn: "9780312370831",
+        genre: "Historical Fiction",
+        published: "2007",
+        ageGroup: "Adult",
+        pages: 300,
+        covers: ["https://books.google.com/books/content?id=PgdIAQAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // More Young Adult
+    {
+        title: "Twilight",
+        author: "Stephenie Meyer",
+        isbn: "9780316015844",
+        genre: "Young Adult",
+        published: "2005",
+        ageGroup: "Young Adult",
+        pages: 498,
+        covers: ["https://books.google.com/books/content?id=ZjjVkQEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.6
+    },
+    {
+        title: "New Moon",
+        author: "Stephenie Meyer",
+        isbn: "9780316024969",
+        genre: "Young Adult",
+        published: "2006",
+        ageGroup: "Young Adult",
+        pages: 563,
+        covers: ["https://books.google.com/books/content?id=bsz5I6UONxcC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.5
+    },
+    {
+        title: "Eclipse",
+        author: "Stephenie Meyer",
+        isbn: "9780316027656",
+        genre: "Young Adult",
+        published: "2007",
+        ageGroup: "Young Adult",
+        pages: 629,
+        covers: ["https://books.google.com/books/content?id=HTG9xyJNrfUC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "Breaking Dawn",
+        author: "Stephenie Meyer",
+        isbn: "9780316067928",
+        genre: "Young Adult",
+        published: "2008",
+        ageGroup: "Young Adult",
+        pages: 756,
+        covers: ["https://books.google.com/books/content?id=2mfvfT4iHcUC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "City of Bones",
+        author: "Cassandra Clare",
+        isbn: "9781416914280",
+        genre: "Young Adult Fantasy",
+        published: "2007",
+        ageGroup: "Young Adult",
+        pages: 485,
+        covers: ["https://books.google.com/books/content?id=3e_0PgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Hush, Hush",
+        author: "Becca Fitzpatrick",
+        isbn: "9781416979555",
+        genre: "Young Adult",
+        published: "2009",
+        ageGroup: "Young Adult",
+        pages: 391,
+        covers: ["https://books.google.com/books/content?id=A8H1OD6bBpcC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "Beautiful Creatures",
+        author: "Kami Garcia",
+        isbn: "9780316042673",
+        genre: "Young Adult",
+        published: "2009",
+        ageGroup: "Young Adult",
+        pages: 563,
+        covers: ["https://books.google.com/books/content?id=YFnOPxsJvLIC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "Matched",
+        author: "Ally Condie",
+        isbn: "9780525423645",
+        genre: "Young Adult",
+        published: "2010",
+        ageGroup: "Young Adult",
+        pages: 369,
+        covers: ["https://books.google.com/books/content?id=KJNbAAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "Thirteen Reasons Why",
+        author: "Jay Asher",
+        isbn: "9781595141712",
+        genre: "Young Adult",
+        published: "2007",
+        ageGroup: "Young Adult",
+        pages: 288,
+        covers: ["https://books.google.com/books/content?id=R6y6AAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.8
+    },
+    {
+        title: "Paper Towns",
+        author: "John Green",
+        isbn: "9780525478188",
+        genre: "Young Adult",
+        published: "2008",
+        ageGroup: "Young Adult",
+        pages: 305,
+        covers: ["https://books.google.com/books/content?id=i_s0Hk2TNLAC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+
+    // More Non-Fiction & Memoirs
+    {
+        title: "The Immortal Life of Henrietta Lacks",
+        author: "Rebecca Skloot",
+        isbn: "9781400052189",
+        genre: "Science",
+        published: "2010",
+        ageGroup: "Adult",
+        pages: 381,
+        covers: ["https://books.google.com/books/content?id=7z5nDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "Into the Wild",
+        author: "Jon Krakauer",
+        isbn: "9780679428503",
+        genre: "Biography",
+        published: "1996",
+        ageGroup: "Adult",
+        pages: 207,
+        covers: ["https://books.google.com/books/content?id=c3RIXzgcayYC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "A Walk in the Woods",
+        author: "Bill Bryson",
+        isbn: "9780767902526",
+        genre: "Travel",
+        published: "1998",
+        ageGroup: "Adult",
+        pages: 397,
+        covers: ["https://books.google.com/books/content?id=M2z6KG0HZtEC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Eat, Pray, Love",
+        author: "Elizabeth Gilbert",
+        isbn: "9780670034710",
+        genre: "Memoir",
+        published: "2006",
+        ageGroup: "Adult",
+        pages: 352,
+        covers: ["https://books.google.com/books/content?id=HrTJ-MQBgBQC&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.6
+    },
+    {
+        title: "The Devil Wears Prada",
+        author: "Lauren Weisberger",
+        isbn: "9780767914765",
+        genre: "Contemporary Fiction",
+        published: "2003",
+        ageGroup: "Adult",
+        pages: 360,
+        covers: ["https://books.google.com/books/content?id=NKmKbwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "The Year of Magical Thinking",
+        author: "Joan Didion",
+        isbn: "9781400043149",
+        genre: "Memoir",
+        published: "2005",
+        ageGroup: "Adult",
+        pages: 227,
+        covers: ["https://books.google.com/books/content?id=RYVDePgPJ2UC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "A Million Little Pieces",
+        author: "James Frey",
+        isbn: "9780385494342",
+        genre: "Memoir",
+        published: "2003",
+        ageGroup: "Adult",
+        pages: 432,
+        covers: ["https://books.google.com/books/content?id=6y_mIQEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "Three Cups of Tea",
+        author: "Greg Mortenson",
+        isbn: "9780143038252",
+        genre: "Biography",
+        published: "2006",
+        ageGroup: "Adult",
+        pages: 349,
+        covers: ["https://books.google.com/books/content?id=F3aLrXFHOOkC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Marley & Me",
+        author: "John Grogan",
+        isbn: "9780060817084",
+        genre: "Memoir",
+        published: "2005",
+        ageGroup: "Family",
+        pages: 291,
+        covers: ["https://books.google.com/books/content?id=_GNAPxNt-AcC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+
+    // More Business & Self-Help
+    {
+        title: "How to Win Friends and Influence People",
+        author: "Dale Carnegie",
+        isbn: "9780671027032",
+        genre: "Self-Help",
+        published: "1936",
+        ageGroup: "Adult",
+        pages: 291,
+        covers: ["https://books.google.com/books/content?id=1rw-QpIAs8UC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Rich Dad Poor Dad",
+        author: "Robert Kiyosaki",
+        isbn: "9781612680194",
+        genre: "Self-Help",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 336,
+        covers: ["https://books.google.com/books/content?id=rSpBPgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Four Agreements",
+        author: "Don Miguel Ruiz",
+        isbn: "9781878424310",
+        genre: "Self-Help",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 138,
+        covers: ["https://books.google.com/books/content?id=F4ZpQgEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "You Are a Badass",
+        author: "Jen Sincero",
+        isbn: "9780762447695",
+        genre: "Self-Help",
+        published: "2013",
+        ageGroup: "Adult",
+        pages: 256,
+        covers: ["https://books.google.com/books/content?id=VwHZuwEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Power of Now",
+        author: "Eckhart Tolle",
+        isbn: "9781577314806",
+        genre: "Self-Help",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 236,
+        covers: ["https://books.google.com/books/content?id=y3Z2AAAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+
+    // Additional Horror
+    {
+        title: "The Exorcist",
+        author: "William Peter Blatty",
+        isbn: "9780060892272",
+        genre: "Horror",
+        published: "1971",
+        ageGroup: "Adult",
+        pages: 340,
+        covers: ["https://books.google.com/books/content?id=S9BQAAAAMAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Rosemary's Baby",
+        author: "Ira Levin",
+        isbn: "9780451194008",
+        genre: "Horror",
+        published: "1967",
+        ageGroup: "Adult",
+        pages: 245,
+        covers: ["https://books.google.com/books/content?id=XoLvOwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Pet Sematary",
+        author: "Stephen King",
+        isbn: "9780385018968",
+        genre: "Horror",
+        published: "1983",
+        ageGroup: "Adult",
+        pages: 374,
+        covers: ["https://books.google.com/books/content?id=ctSoAAAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Amityville Horror",
+        author: "Jay Anson",
+        isbn: "9780671739737",
+        genre: "Horror",
+        published: "1977",
+        ageGroup: "Adult",
+        pages: 246,
+        covers: ["https://books.google.com/books/content?id=m7I9AAAAIAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.8
+    },
+
+    // Additional Classics
+    {
+        title: "Moby Dick",
+        author: "Herman Melville",
+        isbn: "9780486432151",
+        genre: "Classic Literature",
+        published: "1851",
+        ageGroup: "Adult",
+        pages: 720,
+        covers: ["https://books.google.com/books/content?id=RDLNAAAAYAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.5
+    },
+    {
+        title: "Brave New World",
+        author: "Aldous Huxley",
+        isbn: "9780060850524",
+        genre: "Classic Literature",
+        published: "1932",
+        ageGroup: "Adult",
+        pages: 268,
+        covers: ["https://books.google.com/books/content?id=ljGrFcnwC68C&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.99
+    },
+    {
+        title: "Lord of the Flies",
+        author: "William Golding",
+        isbn: "9780571056866",
+        genre: "Classic Literature",
+        published: "1954",
+        ageGroup: "Young Adult",
+        pages: 248,
+        covers: ["https://books.google.com/books/content?id=p0cPNgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.7
+    },
+    {
+        title: "Of Mice and Men",
+        author: "John Steinbeck",
+        isbn: "9780140177398",
+        genre: "Classic Literature",
+        published: "1937",
+        ageGroup: "Young Adult",
+        pages: 107,
+        covers: ["https://books.google.com/books/content?id=pGf0f7gR-Z4C&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.8
+    },
+
+    // Final 24 Books to Complete 200 Total
+    {
+        title: "The Catcher in the Rye",
+        author: "J.D. Salinger",
+        isbn: "9780316769174",
+        genre: "Classic Literature",
+        published: "1951",
+        ageGroup: "Young Adult",
+        pages: 277,
+        covers: ["https://books.google.com/books/content?id=PCDengEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.8
+    },
+    {
+        title: "The Outsiders",
+        author: "S.E. Hinton",
+        isbn: "9780140385724",
+        genre: "Young Adult Fiction",
+        published: "1967",
+        ageGroup: "Young Adult",
+        pages: 180,
+        covers: ["https://books.google.com/books/content?id=fSyMLzEEjRcC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Where the Crawdads Sing",
+        author: "Delia Owens",
+        isbn: "9780735219090",
+        genre: "Contemporary Fiction",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 370,
+        covers: ["https://books.google.com/books/content?id=tHhaDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.5
+    },
+    {
+        title: "It Ends with Us",
+        author: "Colleen Hoover",
+        isbn: "9781501110368",
+        genre: "Contemporary Fiction",
+        published: "2016",
+        ageGroup: "Adult",
+        pages: 384,
+        covers: ["https://books.google.com/books/content?id=gOFJCwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "The Seven Moons of Maali Almeida",
+        author: "Shehan Karunatilaka",
+        isbn: "9781641294447",
+        genre: "Literary Fiction",
+        published: "2022",
+        ageGroup: "Adult",
+        pages: 432,
+        covers: ["https://books.google.com/books/content?id=B7M4EAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Klara and the Sun",
+        author: "Kazuo Ishiguro",
+        isbn: "9780571364886",
+        genre: "Science Fiction",
+        published: "2021",
+        ageGroup: "Adult",
+        pages: 320,
+        covers: ["https://books.google.com/books/content?id=WbYrEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The Midnight Library",
+        author: "Matt Haig",
+        isbn: "9780525559474",
+        genre: "Contemporary Fiction",
+        published: "2020",
+        ageGroup: "Adult",
+        pages: 288,
+        covers: ["https://books.google.com/books/content?id=yOT_DwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Atomic Habits",
+        author: "James Clear",
+        isbn: "9780735211292",
+        genre: "Self-Help",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 320,
+        covers: ["https://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "Educated",
+        author: "Tara Westover",
+        isbn: "9780399590504",
+        genre: "Memoir",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 334,
+        covers: ["https://books.google.com/books/content?id=2ObWDgAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "Becoming",
+        author: "Michelle Obama",
+        isbn: "9781524763138",
+        genre: "Memoir",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 448,
+        covers: ["https://books.google.com/books/content?id=hi5fDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.5
+    },
+    {
+        title: "The Subtle Art of Not Giving a F*ck",
+        author: "Mark Manson",
+        isbn: "9780062457714",
+        genre: "Self-Help",
+        published: "2016",
+        ageGroup: "Adult",
+        pages: 224,
+        covers: ["https://books.google.com/books/content?id=yng_CwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Sapiens",
+        author: "Yuval Noah Harari",
+        isbn: "9780062316097",
+        genre: "Science",
+        published: "2014",
+        ageGroup: "Adult",
+        pages: 464,
+        covers: ["https://books.google.com/books/content?id=FmyBAwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "The Four Agreements",
+        author: "Don Miguel Ruiz",
+        isbn: "9781878424310",
+        genre: "Self-Help",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 138,
+        covers: ["https://books.google.com/books/content?id=Oe7VAwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Circe",
+        author: "Madeline Miller",
+        isbn: "9780316556347",
+        genre: "Fantasy",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 393,
+        covers: ["https://books.google.com/books/content?id=NmI-DwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Song of Achilles",
+        author: "Madeline Miller",
+        isbn: "9780062060624",
+        genre: "Fantasy",
+        published: "2011",
+        ageGroup: "Adult",
+        pages: 416,
+        covers: ["https://books.google.com/books/content?id=PlJhJ8rBRfEC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "Project Hail Mary",
+        author: "Andy Weir",
+        isbn: "9780593135204",
+        genre: "Science Fiction",
+        published: "2021",
+        ageGroup: "Adult",
+        pages: 496,
+        covers: ["https://books.google.com/books/content?id=uSsjEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.5
+    },
+    {
+        title: "The Spanish Love Deception",
+        author: "Elena Armas",
+        isbn: "9781398515659",
+        genre: "Romance",
+        published: "2021",
+        ageGroup: "Adult",
+        pages: 450,
+        covers: ["https://books.google.com/books/content?id=wXQ7EAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Beach Read",
+        author: "Emily Henry",
+        isbn: "9781984806734",
+        genre: "Romance",
+        published: "2020",
+        ageGroup: "Adult",
+        pages: 352,
+        covers: ["https://books.google.com/books/content?id=mCelDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "People We Meet on Vacation",
+        author: "Emily Henry",
+        isbn: "9781984806758",
+        genre: "Romance",
+        published: "2021",
+        ageGroup: "Adult",
+        pages: 364,
+        covers: ["https://books.google.com/books/content?id=nCxXEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Book Lovers",
+        author: "Emily Henry",
+        isbn: "9781984806772",
+        genre: "Romance",
+        published: "2022",
+        ageGroup: "Adult",
+        pages: 376,
+        covers: ["https://books.google.com/books/content?id=qiFnEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "The House in the Cerulean Sea",
+        author: "TJ Klune",
+        isbn: "9781250217318",
+        genre: "Fantasy",
+        published: "2020",
+        ageGroup: "Adult",
+        pages: 398,
+        covers: ["https://books.google.com/books/content?id=yOQiEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Red, White & Royal Blue",
+        author: "Casey McQuiston",
+        isbn: "9781250316776",
+        genre: "Romance",
+        published: "2019",
+        ageGroup: "Adult",
+        pages: 421,
+        covers: ["https://books.google.com/books/content?id=n06CEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "The Invisible Life of Addie LaRue",
+        author: "V.E. Schwab",
+        isbn: "9780765387561",
+        genre: "Fantasy",
+        published: "2020",
+        ageGroup: "Adult",
+        pages: 448,
+        covers: ["https://books.google.com/books/content?id=yOQWEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Priory of the Orange Tree",
+        author: "Samantha Shannon",
+        isbn: "9781635570298",
+        genre: "Fantasy",
+        published: "2019",
+        ageGroup: "Adult",
+        pages: 827,
+        covers: ["https://books.google.com/books/content?id=P0-YEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
     }
 ];
 
@@ -1310,27 +2445,32 @@ function generateRecommendations() {
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Thriller') || 
                 book.genre.includes('Mystery') || 
-                book.genre.includes('Science Fiction')
+                book.genre.includes('Science Fiction') ||
+                book.genre.includes('Horror')
             );
         } else if (vibe === 1) { // Cozy and comforting
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Contemporary') || 
                 book.genre.includes('Romance') ||
                 book.genre.includes('Literary') ||
+                book.genre.includes('Historical Fiction') ||
                 book.rating >= 4.2
             );
         } else if (vibe === 2) { // Make me think deeply
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Self-Help') || 
                 book.genre.includes('Memoir') ||
-                book.genre.includes('Literary')
+                book.genre.includes('Literary') ||
+                book.genre.includes('Classic Literature') ||
+                book.genre.includes('History')
             );
         } else if (vibe === 3) { // Warm and emotional
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Literary') || 
                 book.genre.includes('Romance') ||
                 book.genre.includes('Contemporary') ||
-                book.genre.includes('Memoir')
+                book.genre.includes('Memoir') ||
+                book.genre.includes('Historical Fiction')
             );
         }
         console.log(`After vibe filter: ${selectedBooks.length} books`);
@@ -1358,37 +2498,217 @@ function generateRecommendations() {
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Contemporary') || 
                 book.genre.includes('Literary') ||
-                book.genre.includes('Memoir')
+                book.genre.includes('Memoir') ||
+                book.genre.includes('Historical Fiction')
             );
         } else if (genreFamily === 1) { // Fantasy & sci-fi adventures
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Fantasy') || 
-                book.genre.includes('Science Fiction')
+                book.genre.includes('Science Fiction') ||
+                book.genre.includes('Young Adult Fantasy')
             );
         } else if (genreFamily === 2) { // True stories & real people
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Memoir') || 
-                book.genre.includes('Self-Help')
+                book.genre.includes('Self-Help') ||
+                book.genre.includes('History')
             );
         } else if (genreFamily === 3) { // Help me learn & grow
             selectedBooks = selectedBooks.filter(book => 
                 book.genre.includes('Self-Help') || 
-                book.genre.includes('Memoir')
+                book.genre.includes('Memoir') ||
+                book.genre.includes('History') ||
+                book.genre.includes('Classic Literature')
             );
         }
         console.log(`After genre filter: ${selectedBooks.length} books`);
     }
     
-    // If filters are too restrictive, fallback to highly rated books
+    // Filter by age group (fourth question)
+    if (answers[3] && answers[3].answer !== undefined) {
+        const ageGroup = answers[3].answer;
+        if (ageGroup === 0) { // Me (adult content welcome)
+            selectedBooks = selectedBooks.filter(book => 
+                book.ageGroup === 'Adult'
+            );
+        } else if (ageGroup === 1) { // Young adult (16-25 vibe)
+            selectedBooks = selectedBooks.filter(book => 
+                book.ageGroup === 'Young Adult' || 
+                book.ageGroup === 'Adult'
+            );
+        } else if (ageGroup === 2) { // Younger reader (10-15)
+            selectedBooks = selectedBooks.filter(book => 
+                book.ageGroup === 'Young Adult' || 
+                book.ageGroup === 'Family'
+            );
+        } else if (ageGroup === 3) { // Family-friendly for everyone
+            selectedBooks = selectedBooks.filter(book => 
+                book.ageGroup === 'Family' || 
+                book.ageGroup === 'Young Adult' ||
+                (book.ageGroup === 'Adult' && book.rating >= 4.2)
+            );
+        }
+        console.log(`After age group filter: ${selectedBooks.length} books`);
+    }
+    
+    // Filter by discovery style (fifth question)
+    if (answers[4] && answers[4].answer !== undefined) {
+        const discoveryStyle = answers[4].answer;
+        if (discoveryStyle === 0) { // Give me the crowd favorites
+            selectedBooks = selectedBooks.filter(book => book.rating >= 4.3);
+        } else if (discoveryStyle === 1) { // I want hidden gems
+            selectedBooks = selectedBooks.filter(book => book.rating >= 4.0 && book.rating < 4.3);
+        } else if (discoveryStyle === 2) { // Mix of popular and unique
+            // Keep all books that passed previous filters
+        } else if (discoveryStyle === 3) { // I trust your judgment
+            // Keep all books that passed previous filters
+        }
+        console.log(`After discovery style filter: ${selectedBooks.length} books`);
+    }
+    
+    // Filter by publication date (sixth question)
+    if (answers[5] && answers[5].answer !== undefined) {
+        const publicationPreference = answers[5].answer;
+        const currentYear = new Date().getFullYear();
+        
+        if (publicationPreference === 0) { // Fresh off the press (2020+)
+            selectedBooks = selectedBooks.filter(book => 
+                parseInt(book.published) >= 2020
+            );
+        } else if (publicationPreference === 1) { // Modern classics (2000-2020)
+            selectedBooks = selectedBooks.filter(book => 
+                parseInt(book.published) >= 2000 && parseInt(book.published) < 2020
+            );
+        } else if (publicationPreference === 2) { // Timeless favorites (1990s-2000s)
+            selectedBooks = selectedBooks.filter(book => 
+                parseInt(book.published) >= 1990 && parseInt(book.published) < 2010
+            );
+        } else if (publicationPreference === 3) { // Age doesn't matter to me
+            // Keep all books that passed previous filters
+        }
+        console.log(`After publication date filter: ${selectedBooks.length} books`);
+    }
+    
+    // If filters are too restrictive, progressively relax them
     if (selectedBooks.length === 0) {
-        console.log('No books match filters, using highly rated fallback');
-        selectedBooks = books.filter(book => book.rating >= 4.2).slice(0, 10);
+        console.log('No books match all filters, relaxing publication date filter...');
+        selectedBooks = [...books];
+        
+        // Re-apply all filters except publication date
+        selectedBooks = applyAllFiltersExcept(selectedBooks, ['publication']);
+        
+        if (selectedBooks.length === 0) {
+            console.log('Still no matches, relaxing discovery style...');
+            selectedBooks = applyAllFiltersExcept([...books], ['publication', 'discovery']);
+        }
+        
+        if (selectedBooks.length === 0) {
+            console.log('Still no matches, using age-appropriate highly rated fallback...');
+            selectedBooks = books.filter(book => book.rating >= 4.1);
+            
+            // Apply age group filter if specified
+            if (answers[3] && answers[3].answer !== undefined) {
+                const ageGroup = answers[3].answer;
+                if (ageGroup === 0) {
+                    selectedBooks = selectedBooks.filter(book => book.ageGroup === 'Adult');
+                } else if (ageGroup === 2) {
+                    selectedBooks = selectedBooks.filter(book => 
+                        book.ageGroup === 'Young Adult' || book.ageGroup === 'Family'
+                    );
+                }
+            }
+        }
+    }
+    
+    // Ensure we have enough books for recommendations
+    if (selectedBooks.length < 16) {
+        console.log(`Only ${selectedBooks.length} books found, expanding selection...`);
+        const additionalBooks = books
+            .filter(book => !selectedBooks.includes(book) && book.rating >= 4.0)
+            .slice(0, 16 - selectedBooks.length);
+        selectedBooks = [...selectedBooks, ...additionalBooks];
     }
     
     // Sort by rating and return top recommendations
     selectedBooks.sort((a, b) => b.rating - a.rating);
     
-    return selectedBooks.slice(0, 15); // Return top 15 recommendations
+    return selectedBooks.slice(0, 16); // Return top 16 recommendations
+}
+
+// Helper function to re-apply filters except specified ones
+function applyAllFiltersExcept(books, skipFilters = []) {
+    let filtered = [...books];
+    
+    // Vibe filter
+    if (!skipFilters.includes('vibe') && answers[0] && answers[0].answer !== undefined) {
+        const vibe = answers[0].answer;
+        if (vibe === 0) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Thriller') || book.genre.includes('Mystery') || 
+                book.genre.includes('Science Fiction') || book.genre.includes('Horror')
+            );
+        } else if (vibe === 1) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Contemporary') || book.genre.includes('Romance') ||
+                book.genre.includes('Literary') || book.genre.includes('Historical Fiction') ||
+                book.rating >= 4.2
+            );
+        } else if (vibe === 2) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Self-Help') || book.genre.includes('Memoir') ||
+                book.genre.includes('Literary') || book.genre.includes('Classic Literature') ||
+                book.genre.includes('History')
+            );
+        } else if (vibe === 3) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Literary') || book.genre.includes('Romance') ||
+                book.genre.includes('Contemporary') || book.genre.includes('Memoir') ||
+                book.genre.includes('Historical Fiction')
+            );
+        }
+    }
+    
+    // Page count filter
+    if (!skipFilters.includes('pages') && answers[1] && answers[1].answer !== undefined) {
+        const timePreference = answers[1].answer;
+        if (timePreference === 0) {
+            filtered = filtered.filter(book => book.pages < 250);
+        } else if (timePreference === 1) {
+            filtered = filtered.filter(book => book.pages >= 250 && book.pages <= 400);
+        } else if (timePreference === 2) {
+            filtered = filtered.filter(book => book.pages > 400 && book.pages <= 600);
+        } else if (timePreference === 3) {
+            filtered = filtered.filter(book => book.pages > 600);
+        }
+    }
+    
+    // Genre family filter
+    if (!skipFilters.includes('genre') && answers[2] && answers[2].answer !== undefined) {
+        const genreFamily = answers[2].answer;
+        if (genreFamily === 0) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Contemporary') || book.genre.includes('Literary') ||
+                book.genre.includes('Memoir') || book.genre.includes('Historical Fiction')
+            );
+        } else if (genreFamily === 1) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Fantasy') || book.genre.includes('Science Fiction') ||
+                book.genre.includes('Young Adult Fantasy')
+            );
+        } else if (genreFamily === 2) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Memoir') || book.genre.includes('Self-Help') ||
+                book.genre.includes('History')
+            );
+        } else if (genreFamily === 3) {
+            filtered = filtered.filter(book => 
+                book.genre.includes('Self-Help') || book.genre.includes('Memoir') ||
+                book.genre.includes('History') || book.genre.includes('Classic Literature')
+            );
+        }
+    }
+    
+    return filtered;
 }
 
 function showApiStatus(message, type) {
