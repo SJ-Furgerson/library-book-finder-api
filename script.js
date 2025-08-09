@@ -2632,7 +2632,7 @@ function generateRecommendations() {
     // Sort by rating and return top recommendations
     selectedBooks.sort((a, b) => b.rating - a.rating);
     
-    return selectedBooks.slice(0, 16); // Return top 16 recommendations
+    return selectedBooks.slice(0, 12); // Return top 12 recommendations
 }
 
 // Helper function to re-apply filters except specified ones
