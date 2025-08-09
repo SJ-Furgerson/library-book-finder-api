@@ -2376,8 +2376,7 @@ function showQuestion(index) {
     const question = questions[index];
     
     const optionsHtml = question.options.map((option, i) => {
-        const safeOption = option.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
-        return `<button class="option" onclick="selectAnswer(${i}, '${safeOption}')">${option}</button>`;
+        return `<button class="option" data-option-index="${i}" data-option-text="${option.replace(/"/g, '&quot;')}">${option}</button>`;
     }).join('');
     
     container.innerHTML = `
@@ -2389,18 +2388,44 @@ function showQuestion(index) {
         </div>
     `;
 
+    // Add event listeners to all option buttons
+    const optionButtons = container.querySelectorAll('.option');
+    optionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const optionIndex = parseInt(this.dataset.optionIndex);
+            const optionText = this.dataset.optionText.replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+            console.log(`Button clicked - Index: ${optionIndex}, Text: ${optionText}`);
+            selectAnswer(optionIndex, optionText);
+        });
+    });
+
     document.getElementById('current-question').textContent = index + 1;
     updateProgress();
 }
 
 
 function selectAnswer(optionIndex, optionText) {
-    console.log(`Selected: ${optionText}`);
+    console.log(`Selected option ${optionIndex} for question ${currentQuestion}: ${optionText}`);
+    
+    // Validate the input
+    if (optionIndex === null || optionIndex === undefined || isNaN(optionIndex)) {
+        console.error('Invalid option index:', optionIndex);
+        return;
+    }
+    
+    if (currentQuestion === null || currentQuestion === undefined) {
+        console.error('Invalid current question:', currentQuestion);
+        return;
+    }
+    
     answers.push({ question: currentQuestion, answer: optionIndex, text: optionText });
+    console.log(`Total answers so far: ${answers.length}`);
     
     const questionEl = document.querySelector('.question.active');
-    questionEl.style.opacity = '0';
-    questionEl.style.transform = 'translateY(-20px)';
+    if (questionEl) {
+        questionEl.style.opacity = '0';
+        questionEl.style.transform = 'translateY(-20px)';
+    }
     
     setTimeout(() => {
         currentQuestion++;
@@ -2408,6 +2433,7 @@ function selectAnswer(optionIndex, optionText) {
             showQuestion(currentQuestion);
         } else {
             // All questions answered, show results
+            console.log('All questions completed, showing results');
             showResults();
         }
     }, 600);
@@ -2718,26 +2744,100 @@ function showApiStatus(message, type) {
     statusEl.style.display = 'block';
 }
 
+// Enhanced cover loading with multiple fallback sources
 function getCoverHtml(book) {
-    if (!book.covers || book.covers.length === 0) {
-        return '<div class="book-cover">📚<br>No cover<br>available</div>';
-    }
-    
     return `
         <div class="book-cover">
-            <img src="${book.covers[0]}" 
+            <img id="cover-${book.isbn}" 
                  alt="${book.title}" 
-                 onload="this.style.opacity='1'"
-                 onerror="handleCoverError(this)"
                  style="opacity: 0; transition: opacity 0.3s ease;">
         </div>
     `;
 }
 
-function handleCoverError(img) {
-    console.log('Cover failed, showing placeholder');
-    img.style.display = 'none';
-    img.parentElement.innerHTML = `
+// Generate multiple potential cover URLs for fallback
+function generateCoverUrls(book) {
+    const isbn10 = convertToIsbn10(book.isbn);
+    const isbn13 = book.isbn;
+    
+    return [
+        // Primary source - current covers array
+        ...(book.covers || []),
+        // Google Books API variations
+        `https://books.google.com/books/content?id=${isbn13}&printsec=frontcover&img=1&zoom=1`,
+        `https://books.google.com/books/content?isbn=${isbn13}&printsec=frontcover&img=1&zoom=1`,
+        `https://books.google.com/books/content?isbn=${isbn10}&printsec=frontcover&img=1&zoom=1`,
+        // Open Library covers
+        `https://covers.openlibrary.org/b/isbn/${isbn13}-L.jpg`,
+        `https://covers.openlibrary.org/b/isbn/${isbn10}-L.jpg`,
+        // WorldCat covers
+        `https://www.worldcat.org/title/${isbn13}/covers`,
+        // Amazon covers (may have CORS issues but worth trying)
+        `https://images-na.ssl-images-amazon.com/images/P/${isbn10}.01.L.jpg`,
+        `https://images-na.ssl-images-amazon.com/images/P/${isbn13}.01.L.jpg`
+    ].filter(url => url); // Remove any undefined/null URLs
+}
+
+// Convert ISBN-13 to ISBN-10 for compatibility
+function convertToIsbn10(isbn13) {
+    if (!isbn13 || isbn13.length !== 13) return isbn13;
+    
+    // Remove the 978 prefix and checksum digit
+    let isbn10 = isbn13.substring(3, 12);
+    
+    // Calculate ISBN-10 checksum
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        sum += (i + 1) * parseInt(isbn10.charAt(i));
+    }
+    let checksum = sum % 11;
+    if (checksum === 10) checksum = 'X';
+    
+    return isbn10 + checksum;
+}
+
+// Test if an image URL loads successfully
+function testImageUrl(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = url;
+        
+        // Timeout after 3 seconds
+        setTimeout(() => resolve(false), 3000);
+    });
+}
+
+// Load cover with fallback chain
+async function loadCoverWithFallback(book) {
+    const imgElement = document.getElementById(`cover-${book.isbn}`);
+    if (!imgElement) return;
+    
+    const coverUrls = generateCoverUrls(book);
+    
+    for (const url of coverUrls) {
+        try {
+            const isValid = await testImageUrl(url);
+            if (isValid) {
+                imgElement.src = url;
+                imgElement.onload = () => {
+                    imgElement.style.opacity = '1';
+                };
+                return;
+            }
+        } catch (error) {
+            continue;
+        }
+    }
+    
+    // All covers failed, show placeholder
+    showCoverPlaceholder(imgElement);
+}
+
+function showCoverPlaceholder(imgElement) {
+    imgElement.style.display = 'none';
+    imgElement.parentElement.innerHTML = `
         <div style="display: flex; align-items: center; justify-content: center; 
                     height: 100%; background: #f0f0f0; color: #6c757d; font-size: 0.8rem;
                     border-radius: 8px;">
@@ -2903,6 +3003,12 @@ async function displayResults(recommendations) {
         `;
     }).join('');
     
+    // Load covers with fallback system
+    setTimeout(() => {
+        recommendations.forEach(book => {
+            loadCoverWithFallback(book);
+        });
+    }, 100); // Small delay to ensure DOM is ready
 }
 
 function restartQuiz() {
