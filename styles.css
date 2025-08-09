@@ -276,8 +276,8 @@ body {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
     margin-top: 2rem;
 }
 
@@ -300,8 +300,8 @@ body {
 }
 
 .book-cover {
-    width: 150px;
-    height: 225px;
+    width: 187px;
+    height: 281px;
     background: #f0f0f0;
     border: 1px solid #e9ecef;
     margin: 0 auto 1rem;
@@ -470,7 +470,8 @@ body {
     }
     
     .results-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
     }
 
     .progress {

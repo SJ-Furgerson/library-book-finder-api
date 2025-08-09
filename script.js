@@ -32,14 +32,10 @@ const questions = [
     {
         question: "When it comes to publication date?",
         options: ["Fresh off the press (2020+)", "Modern classics (2000-2020)", "Timeless favorites (1990s-2000s)", "Age doesn't matter to me"]
-    },
-    {
-        question: "Where are you located?",
-        isLocation: true
     }
 ];
 
-// Comprehensive book database - 50 bestselling books across genres
+// Comprehensive book database - 100 bestselling books across genres
 const books = [
     // Contemporary Fiction & Literary Fiction
     {
@@ -618,12 +614,564 @@ const books = [
         pages: 246,
         covers: ["https://books.google.com/books/content?id=Gl8wn7d9200C&printsec=frontcover&img=1&zoom=1"],
         rating: 4.1
+    },
+
+    // Additional Popular Fiction
+    {
+        title: "The Invisible Life of Addie LaRue",
+        author: "V.E. Schwab",
+        isbn: "9780765387561",
+        genre: "Fantasy",
+        published: "2020",
+        ageGroup: "Adult",
+        pages: 544,
+        covers: ["https://books.google.com/books/content?id=yNvSDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Alchemist",
+        author: "Paulo Coelho",
+        isbn: "9780061122415",
+        genre: "Literary Fiction",
+        published: "1988",
+        ageGroup: "Adult",
+        pages: 163,
+        covers: ["https://books.google.com/books/content?id=FzVjBgAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Kite Runner",
+        author: "Khaled Hosseini",
+        isbn: "9781594631931",
+        genre: "Literary Fiction",
+        published: "2003",
+        ageGroup: "Adult",
+        pages: 372,
+        covers: ["https://books.google.com/books/content?id=3wOluwKKgJwC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Goldfinch",
+        author: "Donna Tartt",
+        isbn: "9780316055437",
+        genre: "Literary Fiction",
+        published: "2013",
+        ageGroup: "Adult",
+        pages: 771,
+        covers: ["https://books.google.com/books/content?id=Yt2sAAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Life of Pi",
+        author: "Yann Martel",
+        isbn: "9780156027328",
+        genre: "Literary Fiction",
+        published: "2001",
+        ageGroup: "Adult",
+        pages: 319,
+        covers: ["https://books.google.com/books/content?id=WZjBDQAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+
+    },
+
+    // Business & Self-Development
+    {
+        title: "The 7 Habits of Highly Effective People",
+        author: "Stephen R. Covey",
+        isbn: "9781982137274",
+        genre: "Self-Help",
+        published: "1989",
+        ageGroup: "Adult",
+        pages: 432,
+        covers: ["https://books.google.com/books/content?id=8w8VEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Think and Grow Rich",
+        author: "Napoleon Hill",
+        isbn: "9781585424337",
+        genre: "Self-Help",
+        published: "1937",
+        ageGroup: "Adult",
+        pages: 320,
+        covers: ["https://books.google.com/books/content?id=3omfQB2r9LYC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Subtle Art of Not Giving a F*ck",
+        author: "Mark Manson",
+        isbn: "9780062457714",
+        genre: "Self-Help",
+        published: "2016",
+        ageGroup: "Adult",
+        pages: 224,
+        covers: ["https://books.google.com/books/content?id=yng_CwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+
+    // More Thrillers & Crime
+    {
+        title: "In the Woods",
+        author: "Tana French",
+        isbn: "9780143113492",
+        genre: "Mystery",
+        published: "2007",
+        ageGroup: "Adult",
+        pages: 464,
+        covers: ["https://books.google.com/books/content?id=9Ux6BgAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Sharp Objects",
+        author: "Gillian Flynn",
+        isbn: "9780307341549",
+        genre: "Thriller",
+        published: "2006",
+        ageGroup: "Adult",
+        pages: 272,
+        covers: ["https://books.google.com/books/content?id=DYO2AwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Woman in the Window",
+        author: "A.J. Finn",
+        isbn: "9780062678416",
+        genre: "Thriller",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 448,
+        covers: ["https://books.google.com/books/content?id=p5Y9DwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Girl on the Train",
+        author: "Paula Hawkins",
+        isbn: "9781594634024",
+        genre: "Thriller",
+        published: "2015",
+        ageGroup: "Adult",
+        pages: 336,
+        covers: ["https://books.google.com/books/content?id=xBZWBAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+
+    // More Romance
+    {
+        title: "The Kiss Quotient",
+        author: "Helen Hoang",
+        isbn: "9780451490803",
+        genre: "Romance",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 336,
+        covers: ["https://books.google.com/books/content?id=tpEuDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Spanish Love Deception",
+        author: "Elena Armas",
+        isbn: "9781668002742",
+        genre: "Romance",
+        published: "2021",
+        ageGroup: "Adult",
+        pages: 464,
+        covers: ["https://books.google.com/books/content?id=eQwnEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Time Traveler's Wife",
+        author: "Audrey Niffenegger",
+        isbn: "9780156029438",
+        genre: "Romance",
+        published: "2003",
+        ageGroup: "Adult",
+        pages: 546,
+        covers: ["https://books.google.com/books/content?id=SwJbNVd_8MkC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Me Before You",
+        author: "Jojo Moyes",
+        isbn: "9780670026609",
+        genre: "Romance",
+        published: "2012",
+        ageGroup: "Adult",
+        pages: 369,
+        covers: ["https://books.google.com/books/content?id=Fs7HbZSrDpgC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+
+    // Science Fiction Expansion
+    {
+        title: "Ender's Game",
+        author: "Orson Scott Card",
+        isbn: "9780812550702",
+        genre: "Science Fiction",
+        published: "1985",
+        ageGroup: "Young Adult",
+        pages: 324,
+        covers: ["https://books.google.com/books/content?id=zaJtEgEcpgwC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Handmaid's Tale",
+        author: "Margaret Atwood",
+        isbn: "9780385490818",
+        genre: "Science Fiction",
+        published: "1985",
+        ageGroup: "Adult",
+        pages: 311,
+        covers: ["https://books.google.com/books/content?id=_-EiDAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Neuromancer",
+        author: "William Gibson",
+        isbn: "9780441569595",
+        genre: "Science Fiction",
+        published: "1984",
+        ageGroup: "Adult",
+        pages: 271,
+        covers: ["https://books.google.com/books/content?id=kfW4T4BDSRwC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Ready Player One",
+        author: "Ernest Cline",
+        isbn: "9780307887436",
+        genre: "Science Fiction",
+        published: "2011",
+        ageGroup: "Young Adult",
+        pages: 374,
+        covers: ["https://books.google.com/books/content?id=OjHKOOYxGcgC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Station Eleven",
+        author: "Emily St. John Mandel",
+        isbn: "9780385353304",
+        genre: "Science Fiction",
+        published: "2014",
+        ageGroup: "Adult",
+        pages: 333,
+        covers: ["https://books.google.com/books/content?id=f31kAwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+
+    // Fantasy Expansion
+    {
+        title: "The Lord of the Rings: The Fellowship of the Ring",
+        author: "J.R.R. Tolkien",
+        isbn: "9780544003415",
+        genre: "Fantasy",
+        published: "1954",
+        ageGroup: "Adult",
+        pages: 481,
+        covers: ["https://books.google.com/books/content?id=aWZzLblnxX4C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "A Game of Thrones",
+        author: "George R.R. Martin",
+        isbn: "9780553593716",
+        genre: "Fantasy",
+        published: "1996",
+        ageGroup: "Adult",
+        pages: 720,
+        covers: ["https://books.google.com/books/content?id=5NomkK4EV68C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "The Way of Kings",
+        author: "Brandon Sanderson",
+        isbn: "9780765365279",
+        genre: "Fantasy",
+        published: "2010",
+        ageGroup: "Adult",
+        pages: 1007,
+        covers: ["https://books.google.com/books/content?id=V8gKUgT8Aj8C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.6
+    },
+    {
+        title: "The Priory of the Orange Tree",
+        author: "Samantha Shannon",
+        isbn: "9781635570281",
+        genre: "Fantasy",
+        published: "2019",
+        ageGroup: "Adult",
+        pages: 827,
+        covers: ["https://books.google.com/books/content?id=RpNpDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "American Gods",
+        author: "Neil Gaiman",
+        isbn: "9780380973651",
+        genre: "Fantasy",
+        published: "2001",
+        ageGroup: "Adult",
+        pages: 635,
+        covers: ["https://books.google.com/books/content?id=u7vJQgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // Young Adult Expansion
+    {
+        title: "Divergent",
+        author: "Veronica Roth",
+        isbn: "9780062024039",
+        genre: "Young Adult",
+        published: "2011",
+        ageGroup: "Young Adult",
+        pages: 487,
+        covers: ["https://books.google.com/books/content?id=FBBGNO1N8T8C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Maze Runner",
+        author: "James Dashner",
+        isbn: "9780385737951",
+        genre: "Young Adult",
+        published: "2009",
+        ageGroup: "Young Adult",
+        pages: 375,
+        covers: ["https://books.google.com/books/content?id=aFSdDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Eleanor & Park",
+        author: "Rainbow Rowell",
+        isbn: "9781250012579",
+        genre: "Young Adult",
+        published: "2013",
+        ageGroup: "Young Adult",
+        pages: 328,
+        covers: ["https://books.google.com/books/content?id=IQmUAAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Looking for Alaska",
+        author: "John Green",
+        isbn: "9780525475060",
+        genre: "Young Adult",
+        published: "2005",
+        ageGroup: "Young Adult",
+        pages: 221,
+        covers: ["https://books.google.com/books/content?id=MlCgDUGrHB0C&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "The Hate U Give",
+        author: "Angie Thomas",
+        isbn: "9780062498533",
+        genre: "Young Adult",
+        published: "2017",
+        ageGroup: "Young Adult",
+        pages: 464,
+        covers: ["https://books.google.com/books/content?id=3-oMDQAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.5
+    },
+
+    // More Historical Fiction
+    {
+        title: "Outlander",
+        author: "Diana Gabaldon",
+        isbn: "9780440212560",
+        genre: "Historical Fiction",
+        published: "1991",
+        ageGroup: "Adult",
+        pages: 627,
+        covers: ["https://books.google.com/books/content?id=q2yRHdoOT9EC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "The Tattooist of Auschwitz",
+        author: "Heather Morris",
+        isbn: "9780062797155",
+        genre: "Historical Fiction",
+        published: "2018",
+        ageGroup: "Adult",
+        pages: 262,
+        covers: ["https://books.google.com/books/content?id=kJxODwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "Memoirs of a Geisha",
+        author: "Arthur Golden",
+        isbn: "9780375401152",
+        genre: "Historical Fiction",
+        published: "1997",
+        ageGroup: "Adult",
+        pages: 434,
+        covers: ["https://books.google.com/books/content?id=nwJCPgAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "The Color Purple",
+        author: "Alice Walker",
+        isbn: "9780156028356",
+        genre: "Historical Fiction",
+        published: "1982",
+        ageGroup: "Adult",
+        pages: 295,
+        covers: ["https://books.google.com/books/content?id=W3YZEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // More Memoirs & Biographies
+    {
+        title: "The Glass Castle",
+        author: "Jeannette Walls",
+        isbn: "9780743247542",
+        genre: "Memoir",
+        published: "2005",
+        ageGroup: "Adult",
+        pages: 288,
+        covers: ["https://books.google.com/books/content?id=YW_3AAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Wild",
+        author: "Cheryl Strayed",
+        isbn: "9780307592736",
+        genre: "Memoir",
+        published: "2012",
+        ageGroup: "Adult",
+        pages: 315,
+        covers: ["https://books.google.com/books/content?id=4gSUJrCy5bIC&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "When Breath Becomes Air",
+        author: "Paul Kalanithi",
+        isbn: "9780812988406",
+        genre: "Memoir",
+        published: "2016",
+        ageGroup: "Adult",
+        pages: 228,
+        covers: ["https://books.google.com/books/content?id=5aQPCgAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.4
+    },
+    {
+        title: "Kitchen Confidential",
+        author: "Anthony Bourdain",
+        isbn: "9780747553557",
+        genre: "Memoir",
+        published: "2000",
+        ageGroup: "Adult",
+        pages: 312,
+        covers: ["https://books.google.com/books/content?id=FGj7SwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+
+    // More Horror
+    {
+        title: "The Shining",
+        author: "Stephen King",
+        isbn: "9780307743657",
+        genre: "Horror",
+        published: "1977",
+        ageGroup: "Adult",
+        pages: 447,
+        covers: ["https://books.google.com/books/content?id=iQ3InwAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.2
+    },
+    {
+        title: "It",
+        author: "Stephen King",
+        isbn: "9781501142970",
+        genre: "Horror",
+        published: "1986",
+        ageGroup: "Adult",
+        pages: 1138,
+        covers: ["https://books.google.com/books/content?id=HU6wCwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.3
+    },
+    {
+        title: "Frankenstein",
+        author: "Mary Shelley",
+        isbn: "9780486282114",
+        genre: "Horror",
+        published: "1818",
+        ageGroup: "Adult",
+        pages: 166,
+        covers: ["https://books.google.com/books/content?id=dp0RAAAAYAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Dracula",
+        author: "Bram Stoker",
+        isbn: "9780486411095",
+        genre: "Horror",
+        published: "1897",
+        ageGroup: "Adult",
+        pages: 418,
+        covers: ["https://books.google.com/books/content?id=fBhLEAAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+
+    // More Classics
+    {
+        title: "Jane Eyre",
+        author: "Charlotte Brontë",
+        isbn: "9780142437209",
+        genre: "Classic Literature",
+        published: "1847",
+        ageGroup: "Adult",
+        pages: 507,
+        covers: ["https://books.google.com/books/content?id=1xNfDwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
+    },
+    {
+        title: "Wuthering Heights",
+        author: "Emily Brontë",
+        isbn: "9780141439556",
+        genre: "Classic Literature",
+        published: "1847",
+        ageGroup: "Adult",
+        pages: 416,
+        covers: ["https://books.google.com/books/content?id=u7f7swEACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.9
+    },
+    {
+        title: "The Catcher in the Rye",
+        author: "J.D. Salinger",
+        isbn: "9780316769174",
+        genre: "Classic Literature",
+        published: "1951",
+        ageGroup: "Young Adult",
+        pages: 277,
+        covers: ["https://books.google.com/books/content?id=5wjxCwAAQBAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 3.8
+    },
+
+    // Popular Contemporary
+    {
+        title: "The Thursday Next",
+        author: "Jasper Fforde",
+        isbn: "9780142001806",
+        genre: "Contemporary Fiction",
+        published: "2001",
+        ageGroup: "Adult",
+        pages: 374,
+        covers: ["https://books.google.com/books/content?id=rHhfswAACAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.0
+    },
+    {
+        title: "Big Fish",
+        author: "Daniel Wallace",
+        isbn: "9781565123212",
+        genre: "Contemporary Fiction",
+        published: "1998",
+        ageGroup: "Adult",
+        pages: 180,
+        covers: ["https://books.google.com/books/content?id=cJhPAAAAMAAJ&printsec=frontcover&img=1&zoom=1"],
+        rating: 4.1
     }
 ];
 
 let currentQuestion = 0;
 let answers = [];
-let userLocation = '';
 
 function startApp() {
     console.log('📚 Initializing Stacks...');
@@ -692,68 +1240,24 @@ function showQuestion(index) {
     const container = document.getElementById('question-container');
     const question = questions[index];
     
-    if (question.isLocation) {
-        container.innerHTML = `
-            <div class="question active">
-                <h2>${question.question}</h2>
-                <div class="options">
-                    <input type="text" class="location-input" id="location-input" 
-                           placeholder="Enter your city, state or ZIP code" 
-                           onkeypress="if(event.key==='Enter') selectLocation()">
-                    <button class="continue-btn" id="continue-btn" 
-                            onclick="selectLocation()" disabled>
-                        Continue
-                    </button>
-                </div>
+    const optionsHtml = question.options.map((option, i) => {
+        const safeOption = option.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+        return `<button class="option" onclick="selectAnswer(${i}, '${safeOption}')">${option}</button>`;
+    }).join('');
+    
+    container.innerHTML = `
+        <div class="question active">
+            <h2>${question.question}</h2>
+            <div class="options">
+                ${optionsHtml}
             </div>
-        `;
-        
-        const locationInput = document.getElementById('location-input');
-        const continueBtn = document.getElementById('continue-btn');
-        
-        locationInput.addEventListener('input', function(e) {
-            continueBtn.disabled = e.target.value.trim().length === 0;
-        });
-        
-        setTimeout(() => locationInput.focus(), 100);
-        
-    } else {
-        const optionsHtml = question.options.map((option, i) => {
-            const safeOption = option.replace(/'/g, "&#39;").replace(/"/g, "&quot;");
-            return `<button class="option" onclick="selectAnswer(${i}, '${safeOption}')">${option}</button>`;
-        }).join('');
-        
-        container.innerHTML = `
-            <div class="question active">
-                <h2>${question.question}</h2>
-                <div class="options">
-                    ${optionsHtml}
-                </div>
-            </div>
-        `;
-    }
+        </div>
+    `;
 
     document.getElementById('current-question').textContent = index + 1;
     updateProgress();
 }
 
-function selectLocation() {
-    const input = document.getElementById('location-input');
-    const location = input.value.trim();
-    
-    if (location) {
-        userLocation = location;
-        answers.push({ question: currentQuestion, text: location });
-        
-        const questionEl = document.querySelector('.question.active');
-        questionEl.style.opacity = '0';
-        questionEl.style.transform = 'translateY(-20px)';
-        
-        setTimeout(() => {
-            showResults();
-        }, 600);
-    }
-}
 
 function selectAnswer(optionIndex, optionText) {
     console.log(`Selected: ${optionText}`);
@@ -767,6 +1271,9 @@ function selectAnswer(optionIndex, optionText) {
         currentQuestion++;
         if (currentQuestion < questions.length) {
             showQuestion(currentQuestion);
+        } else {
+            // All questions answered, show results
+            showResults();
         }
     }, 600);
 }
@@ -777,7 +1284,7 @@ async function showResults() {
     document.querySelector('.progress-container').style.display = 'none';
     document.getElementById('question-container').style.display = 'none';
     document.getElementById('results-container').style.display = 'block';
-    document.getElementById('location-display').textContent = `Searching libraries near ${userLocation}`;
+    document.getElementById('location-display').textContent = ``;
     
     document.getElementById('loading').style.display = 'block';
     
@@ -881,7 +1388,7 @@ function generateRecommendations() {
     // Sort by rating and return top recommendations
     selectedBooks.sort((a, b) => b.rating - a.rating);
     
-    return selectedBooks.slice(0, 6); // Return top 6 recommendations
+    return selectedBooks.slice(0, 15); // Return top 15 recommendations
 }
 
 function showApiStatus(message, type) {
@@ -1042,7 +1549,6 @@ async function searchLibrariesWithBook(oclcNumber, location) {
 
 async function displayResults(recommendations) {
     console.log('📊 Displaying book recommendations');
-    showApiStatus(`Finding nearby libraries for your book recommendations...`, 'success');
     
     const grid = document.getElementById('results-grid');
     
@@ -1067,50 +1573,21 @@ async function displayResults(recommendations) {
                 </div>
                 <div class="availability">
                     <div class="availability-status">📚 Find This Book</div>
-                    <div class="library-info">Searching libraries near ${userLocation}...</div>
+                    <div class="library-info">Search multiple sources to find this book</div>
                     <a href="${links.googleBooks}" target="_blank" class="library-link">Google Books</a>
                     <a href="${links.openLibrary}" target="_blank" class="library-link">Open Library</a>
                     <a href="${links.goodreads}" target="_blank" class="library-link">Goodreads</a>
-                    <div class="library-search-placeholder" id="library-${book.isbn}">🔍 Finding nearby libraries...</div>
+                    <a href="${links.worldcat}" target="_blank" class="library-link">WorldCat</a>
                 </div>
             </div>
         `;
     }).join('');
     
-    // Now search for libraries for each book and update the cards
-    recommendations.forEach(async (book) => {
-        try {
-            const libraryInfo = await searchNearestLibrary(book, userLocation);
-            const placeholder = document.getElementById(`library-${book.isbn}`);
-            
-            if (placeholder && libraryInfo) {
-                placeholder.outerHTML = `<a href="${libraryInfo.url}" target="_blank" class="library-link">${libraryInfo.name}</a>`;
-                
-                // Update library info text if we have address/distance
-                if (libraryInfo.address) {
-                    const infoDiv = placeholder.closest('.availability').querySelector('.library-info');
-                    infoDiv.textContent = `Found at: ${libraryInfo.address}`;
-                }
-            } else if (placeholder) {
-                placeholder.textContent = 'No local libraries found';
-                placeholder.style.color = '#666';
-                placeholder.style.fontStyle = 'italic';
-            }
-        } catch (error) {
-            console.error(`Failed to find library for ${book.title}:`, error);
-            const placeholder = document.getElementById(`library-${book.isbn}`);
-            if (placeholder) {
-                placeholder.textContent = 'Library search unavailable';
-                placeholder.style.color = '#666';
-            }
-        }
-    });
 }
 
 function restartQuiz() {
     currentQuestion = 0;
     answers = [];
-    userLocation = '';
     document.querySelector('.progress').style.display = 'block';
     document.querySelector('.progress-container').style.display = 'block';
     document.getElementById('question-container').style.display = 'flex';
